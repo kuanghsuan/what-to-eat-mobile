@@ -1,10 +1,9 @@
 import { createAppContainer, createBottomTabNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack"; 
-import {Text, Icon} from 'react-native'
+import {Text} from 'react-native';
+import Icon from "../components/Icon";
 import React from "react";
-import styles from "../assets/styles/index";
-// import { Platform } from "react-native";
-// import { Ionicons } from "@expo/vector-icons";
+import styles from "../assets/styles";
 import HomeScreen from '../screens/HomeScreen';
 import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
@@ -16,19 +15,54 @@ const TinderNavigator = createBottomTabNavigator(
     Explore: {
       screen: HomeScreen,
       navigationOptions: {
+        tabBarIcon: ({ focused }) => {
+          const iconFocused = focused ? "#7444C0" : "#363636";
+          return (
+            <Text style={[styles.iconMenu, { color: iconFocused }]}>
+              <Icon name="explore" />
+            </Text>
+          );
+        },
       },
     },
     Matches: {
       screen: MatchesScreen,
-      navigationOptions: {},
+      navigationOptions: {
+        tabBarIcon: ({ focused }) => {
+          const iconFocused = focused ? "#7444C0" : "#363636";
+          return (
+            <Text style={[styles.iconMenu, { color: iconFocused }]}>
+              <Icon name="heart" />
+            </Text>
+          );
+        },
+      },
     },
     Chat: {
       screen: MessagesScreen,
-      navigationOptions: {},
+      navigationOptions: {
+        tabBarIcon: ({ focused }) => {
+          const iconFocused = focused ? "#7444C0" : "#363636";
+          return (
+            <Text style={[styles.iconMenu, { color: iconFocused }]}>
+              <Icon name="chat" />
+            </Text>
+          );
+        },
+      },
     },
     Profile: {
       screen: ProfileScreen,
-      navigationOptions: {},
+      navigationOptions: {
+        tabBarIcon: ({ focused }) => {
+          const iconFocused = focused ? "#7444C0" : "#363636";
+          return (
+            <Text style={[styles.iconMenu, { color: iconFocused }]}>
+              <Icon name="user" />
+            </Text>
+          );
+        },
+      },
     },
   },
   {
