@@ -6,6 +6,7 @@ import Filters from "../components/Filters";
 import CardItem from "../components/CardItem";
 import styles from "../assets/styles";
 import { fetchRestaurantsData } from "../utils/api_utils";
+import Swiper from "react-native-deck-swiper";
 
 const Home = () => {
   // 1. have cards as state
