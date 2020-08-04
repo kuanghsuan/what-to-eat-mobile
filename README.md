@@ -10,9 +10,6 @@ $ npm install -g expo-cli.        // install the expo cli
 ```
 Further more detail on how to set up an react-native app with [expo](https://docs.expo.io/tutorial/planning/?redirected)
 ```
-
-# Example workflow for contributing to this project:
-
 $ git clone https://github.com/kuanghsuan/what-to-eat-mobile.git
 $ cd what-to-eat-mobile
 
