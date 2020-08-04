@@ -33,5 +33,5 @@ $ npm install
     ```
 2.  Open React Native Debugger you just download and press `command+T` to type the port `19001`.
 3.  Press `command+D` on your simulator and click `Debug remote JS`, the React Native Debugger will connect to your app.
-4.  Note: Must do step 2 before step 3, since the  React Native Debugger using `19001` as the port is same as the default of `Debug remote JS` use on browser. If     click the `Debug remote JS` first, the error will show you two debbugger exiting on the same time. 
+4.  Note: Must do step 2 before step 3, since the  React Native Debugger using `19001` as the port is same as the default of `Debug remote JS` use on browser. If     click the `Debug remote JS` first, the error will show you two debugger exiting on the same time. 
 5.  Further more detail on how to set up [react-native-debugger](https://github.com/jhen0409/react-native-debugger).
