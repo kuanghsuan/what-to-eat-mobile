@@ -1,8 +1,8 @@
+import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
+
+import Icon from "./Icon";
 import React from "react";
 import styles from "../assets/styles";
-
-import { Text, View, Image, Dimensions, TouchableOpacity } from "react-native";
-import Icon from "./Icon";
 
 const CardItem = (props) => {
   const {
