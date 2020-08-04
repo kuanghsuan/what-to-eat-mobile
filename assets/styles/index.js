@@ -1,4 +1,4 @@
-import { StyleSheet, Dimensions } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 const PRIMARY_COLOR = "#7444C0";
 const SECONDARY_COLOR = "#5636B8";
@@ -31,6 +31,14 @@ export default StyleSheet.create({
 		shadowRadius: 10,
 		shadowColor: BLACK,
 		shadowOffset: { height: 0, width: 0 }
+	},
+	card: {
+		flex: 1,
+		borderRadius: 4,
+		borderWidth: 2,
+		borderColor: "#E8E8E8",
+		justifyContent: "center",
+		backgroundColor: "white"
 	},
 	matchesCardItem: {
 		marginTop: -35,
