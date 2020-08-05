@@ -1,4 +1,5 @@
 import { Dimensions, StyleSheet } from "react-native";
+import {hp, wp} from "../../utils/sizing_utils"
 
 const PRIMARY_COLOR = "#7444C0";
 const SECONDARY_COLOR = "#5636B8";
@@ -24,14 +25,18 @@ export default StyleSheet.create({
 	// COMPONENT - CARD ITEM
 	containerCardItem: {
 		backgroundColor: WHITE,
-		borderRadius: 8,
+		overflow: 'hidden',
+		borderRadius: 20,
 		alignItems: "center",
-		margin: 10,
-		shadowOpacity: 0.05,
+		height: 622,
+		width: 366,
+		shadowOpacity: 0.2,
 		shadowRadius: 10,
 		shadowColor: BLACK,
 		shadowOffset: { height: 0, width: 0 }
 	},
+
+
 	card: {
 		flex: 1,
 		borderRadius: 4,
@@ -41,15 +46,22 @@ export default StyleSheet.create({
 		backgroundColor: "white"
 	},
 	matchesCardItem: {
-		marginTop: -35,
-		backgroundColor: PRIMARY_COLOR,
-		paddingVertical: 7,
-		paddingHorizontal: 20,
-		borderRadius: 20
+		flex: 1,
+		flexDirection: 'column',
+		// justifyContent: 'center',
+		alignItems: 'center',
+		marginTop: 486,
+		marginBottom: 32,
+		marginLeft: 48,
+		backgroundColor: "white",
+		borderRadius: 10,
+		opacity : 0.8,
+		width: 360,
 	},
 	matchesTextCardItem: {
 		fontFamily: ICON_FONT,
-		color: WHITE
+		color: BLACK,
+		fontSize: 20,
 	},
 	descriptionCardItem: {
 		color: GRAY,
@@ -245,7 +257,8 @@ export default StyleSheet.create({
 		flex: 1,
 		resizeMode: "cover",
 		width: DIMENSION_WIDTH,
-		height: DIMENSION_HEIGHT
+		height: DIMENSION_HEIGHT,
+		backgroundColor: WHITE
 	},
 	top: {
 		paddingTop: 50,

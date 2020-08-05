@@ -1,4 +1,4 @@
-import { Dimensions, Image, Text, TouchableOpacity, View } from "react-native";
+import { Dimensions, Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
 
 import Icon from "./Icon";
 import React from "react";
@@ -16,16 +16,6 @@ const CardItem = (props) => {
     status,
     variant,
   } = props;
-  // Custom styling
-  const fullWidth = Dimensions.get("window").width;
-  const imageStyle = [
-    {
-      borderRadius: 8,
-      width: variant ? fullWidth / 2 - 30 : fullWidth - 80,
-      height: variant ? 170 : 350,
-      margin: variant ? 0 : 20,
-    },
-  ];
 
   const nameStyle = [
     {
@@ -37,28 +27,19 @@ const CardItem = (props) => {
   ];
 
   return (
-    <View style={styles.containerCardItem}>
-      {/* IMAGE */}
-      <Image source={{ uri: imageUrl }} style={imageStyle} />
-
-      {/* MATCHES */}
+    <ImageBackground
+      source={{ uri: imageUrl }}
+      style={styles.containerCardItem}>
       {matches && (
         <View style={styles.matchesCardItem}>
           <Text style={styles.matchesTextCardItem}>
-            <Icon name="heart" />
-            {matches}% Match!
+            {name}
           </Text>
         </View>
       )}
-
-      {/* NAME */}
-      <Text style={nameStyle}>{name}</Text>
-
-      {/* DESCRIPTION */}
       {description && (
         <Text style={styles.descriptionCardItem}>{description}</Text>
       )}
-
       {/* STATUS */}
       {status && (
         <View style={styles.status}>
@@ -98,7 +79,7 @@ const CardItem = (props) => {
           </TouchableOpacity>
         </View>
       )}
-    </View>
+    </ImageBackground>
   );
 };
 
