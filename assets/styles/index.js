@@ -28,13 +28,8 @@ export default StyleSheet.create({
     backgroundColor: WHITE,
     overflow: "hidden",
     borderRadius: 20,
-    // alignItems: "center",
     height: 622,
     width: 366,
-    shadowOpacity: 0.8,
-    // shadowRadius: 30,
-    shadowColor: BLACK,
-    // shadowOffset: { height: -20, width: -20 },
   },
   overlayLabels: {
     fontSize: 45,
@@ -42,6 +37,13 @@ export default StyleSheet.create({
     borderRadius: 10,
     padding: 10,
     overflow: "hidden",
+  },
+
+  cardContainer: {
+    shadowOpacity: 0.5,
+    shadowRadius: 8,
+    shadowColor: GRAY,
+    shadowOffset: { height: 0, width: 0 },
   },
 
   card: {
@@ -279,7 +281,8 @@ export default StyleSheet.create({
   // CONTAINER - GENERAL
   bg: {
     flex: 1,
-    resizeMode: "cover",
+    flexDirection: "column",
+    justifyContent: "flex-start",
     width: DIMENSION_WIDTH,
     height: DIMENSION_HEIGHT,
     backgroundColor: WHITE,
@@ -301,17 +304,6 @@ export default StyleSheet.create({
 
   // CONTAINER - HOME
   containerHome: {},
-
-  containerShadow: {
-    // borderRadius: 20,
-    height: 622,
-    width: 366,
-    shadowOpacity: 0.8,
-    shadowRadius: 30,
-    shadowColor: BLACK,
-    shadowOffset: { height: 0, width: 0 },
-    margin: 24,
-  },
 
   // CONTAINER - MATCHES
   containerMatches: {

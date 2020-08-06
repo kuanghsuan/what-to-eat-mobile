@@ -19,18 +19,7 @@ const CardItem = (props) => {
     name,
     onPressLeft,
     onPressRight,
-    status,
-    variant,
   } = props;
-
-  const nameStyle = [
-    {
-      paddingTop: variant ? 10 : 15,
-      paddingBottom: variant ? 5 : 7,
-      color: "#363636",
-      fontSize: variant ? 15 : 30,
-    },
-  ];
 
   return (
     <ImageBackground
