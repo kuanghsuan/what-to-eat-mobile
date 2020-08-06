@@ -1,4 +1,4 @@
-import { createAppContainer, createBottomTabNavigator } from "react-navigation";
+import { createAppContainer, createBottomTabNavigator, createSwitchNavigator } from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { Text } from "react-native";
 import Icon from "../components/Icon";
@@ -8,6 +8,13 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import MatchesScreen from "../screens/MatchesScreen";
+import SelectTagScreen from '../screens/SelectTagScreen';
+
+const SelectNavigator = createStackNavigator({
+  
+     SelectTagScreen,
+  
+});
 
 const TinderNavigator = createBottomTabNavigator(
   {
@@ -88,4 +95,10 @@ const TinderNavigator = createBottomTabNavigator(
   }
 );
 
-export default createAppContainer(TinderNavigator);
+
+const MainNavigator = createSwitchNavigator({
+  select: SelectNavigator,
+  menu: TinderNavigator,
+});
+
+export default createAppContainer(MainNavigator);
