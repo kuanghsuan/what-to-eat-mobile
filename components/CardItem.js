@@ -1,4 +1,11 @@
-import { Dimensions, Image, ImageBackground, Text, TouchableOpacity, View } from "react-native";
+import {
+  Dimensions,
+  Image,
+  ImageBackground,
+  Text,
+  TouchableOpacity,
+  View,
+} from "react-native";
 
 import Icon from "./Icon";
 import React from "react";
@@ -9,7 +16,6 @@ const CardItem = (props) => {
     actions,
     description,
     imageUrl,
-    matches,
     name,
     onPressLeft,
     onPressRight,
@@ -29,26 +35,18 @@ const CardItem = (props) => {
   return (
     <ImageBackground
       source={{ uri: imageUrl }}
-      style={styles.containerCardItem}>
-      {matches && (
-        <View style={styles.matchesCardItem}>
-          <Text style={styles.matchesTextCardItem}>
-            {name}
-          </Text>
-        </View>
-      )}
-      {description && (
-        <Text style={styles.descriptionCardItem}>{description}</Text>
-      )}
-      {/* STATUS */}
-      {status && (
-        <View style={styles.status}>
-          <View style={status === "Online" ? styles.online : styles.offline} />
-          <Text style={styles.statusText}>{status}</Text>
+      style={styles.containerCardItem}
+    >
+      {name && (
+        <View style={styles.nameCardItem}>
+          <Text style={styles.nameTextCardItem}>{name}</Text>
+          {description && (
+            <Text style={styles.descriptionCardItem}>{description}</Text>
+          )}
         </View>
       )}
 
-      {/* ACTIONS */}
+      {/* ACTIONS is for bottom bar later(like/dislike/nutural...) */}
       {actions && (
         <View style={styles.actionsCardItem}>
           <TouchableOpacity style={styles.miniButton}>

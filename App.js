@@ -1,12 +1,14 @@
-import { StatusBar } from 'expo-status-bar';
-import React, { useState } from 'react';
+import { StatusBar } from "expo-status-bar";
+import React, { useState } from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import TinderNavigator from './navigation/navigator';
+import TinderNavigator from "./navigation/navigator";
 
 const fetchFonts = () => {
   return Font.loadAsync({
-    "tinderclone": require("./assets/fonts/tinderclone.ttf"),
+    tinderclone: require("./assets/fonts/tinderclone.ttf"),
+    "Roboto-Medium": require("./assets/fonts/Roboto-Medium.ttf"),
+    "Roboto-Light": require("./assets/fonts/Roboto-Light.ttf"),
     // "open-sans-bold": require("./assets/fonts/OpenSans-Bold.ttf"),
   });
 };
@@ -25,5 +27,3 @@ export default function App() {
   }
   return <TinderNavigator />;
 }
-
-
