@@ -1,14 +1,13 @@
 import { createAppContainer, createBottomTabNavigator } from "react-navigation";
-import { createStackNavigator } from "react-navigation-stack"; 
-import {Text} from 'react-native';
+import { createStackNavigator } from "react-navigation-stack";
+import { Text } from "react-native";
 import Icon from "../components/Icon";
 import React from "react";
 import styles from "../assets/styles";
-import HomeScreen from '../screens/HomeScreen';
+import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import MatchesScreen from "../screens/MatchesScreen";
-
 
 const TinderNavigator = createBottomTabNavigator(
   {
@@ -88,8 +87,5 @@ const TinderNavigator = createBottomTabNavigator(
     },
   }
 );
-
-
-
 
 export default createAppContainer(TinderNavigator);

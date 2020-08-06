@@ -1,11 +1,19 @@
 import React from "react";
 import { View, Text } from "react-native";
 import { string } from "prop-types";
-import styles from "../assets/styles/index";
+import cardItemStyle from "../assets/styles/cardItem";
 
 const OverlayLabel = ({ label, color }) => (
-  <View style={[styles.overlayLabel, { borderColor: color }]}>
-    <Text style={[styles.overlayLabelText, { color }]}>{label}</Text>
+  <View
+    style={[
+      cardItemStyle.overlayLabel,
+      {
+        borderColor: color,
+        transform: [{ rotate: "25deg" }],
+      },
+    ]}
+  >
+    <Text style={[cardItemStyle.overlayLabelText, { color }]}>{label}</Text>
   </View>
 );
 

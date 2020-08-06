@@ -16,6 +16,7 @@ import { fetchRestaurantsData } from "../utils/api_utils";
 import { WHITE } from "../assets/styles/index";
 import OverlayLabel from "../components/OverlayLabels";
 import styles from "../assets/styles";
+import cardItemStyle from "../assets/styles/cardItem";
 
 const Home = () => {
   // 1. have cards as state
@@ -29,8 +30,8 @@ const Home = () => {
     });
   }, [setRestaurantsData]);
 
-  const cardHeight = styles.containerCardItem.height;
-  const cardWidth = styles.containerCardItem.width;
+  const cardHeight = cardItemStyle.containerCardItem.height;
+  const cardWidth = cardItemStyle.containerCardItem.width;
 
   return (
     <View style={styles.bg}>
@@ -108,7 +109,7 @@ const Home = () => {
           renderCard={(restaurant) => {
             return (
               restaurant && (
-                <View style={styles.cardContainer}>
+                <View style={cardItemStyle.cardContainer}>
                   <CardItem
                     imageUrl={restaurant.image_url}
                     name={restaurant.name}

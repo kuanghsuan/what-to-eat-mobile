@@ -10,6 +10,7 @@ import {
 import Icon from "./Icon";
 import React from "react";
 import styles from "../assets/styles";
+import cardItemStyle from "../assets/styles/cardItem";
 
 const CardItem = (props) => {
   const {
@@ -24,19 +25,19 @@ const CardItem = (props) => {
   return (
     <ImageBackground
       source={{ uri: imageUrl }}
-      style={styles.containerCardItem}
+      style={cardItemStyle.containerCardItem}
     >
       {name && (
-        <View style={styles.nameCardItem}>
-          <Text style={styles.nameTextCardItem}>{name}</Text>
+        <View style={cardItemStyle.nameCardItem}>
+          <Text style={cardItemStyle.nameTextCardItem}>{name}</Text>
           {description && (
-            <Text style={styles.descriptionCardItem}>{description}</Text>
+            <Text style={cardItemStyle.descriptionCardItem}>{description}</Text>
           )}
         </View>
       )}
 
       {/* ACTIONS is for bottom bar later(like/dislike/nutural...) */}
-      {actions && (
+      {/* {actions && (
         <View style={styles.actionsCardItem}>
           <TouchableOpacity style={styles.miniButton}>
             <Text style={styles.star}>
@@ -65,7 +66,7 @@ const CardItem = (props) => {
             </Text>
           </TouchableOpacity>
         </View>
-      )}
+      )} */}
     </ImageBackground>
   );
 };
