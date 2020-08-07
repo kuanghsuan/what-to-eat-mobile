@@ -10,7 +10,7 @@ import {
 import Icon from "./Icon";
 import React from "react";
 import styles from "../assets/styles";
-import cardItemStyle from "../assets/styles/cardItem";
+import cardItemStyle from "../assets/styles/CardItemStyle";
 
 const CardItem = (props) => {
   const {

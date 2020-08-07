@@ -1,26 +1,26 @@
 import { Dimensions, StyleSheet } from "react-native";
 import { hp, wp } from "../../utils/sizing_utils";
 
-const PRIMARY_COLOR = "#7444C0";
-const SECONDARY_COLOR = "#5636B8";
+export const PRIMARY_COLOR = "#7444C0";
+export const SECONDARY_COLOR = "#5636B8";
 export const WHITE = "#FFFFFF";
-const GRAY = "#757E90";
-const DARK_GRAY = "#363636";
-const BLACK = "#000000";
+export const GRAY = "#757E90";
+export const DARK_GRAY = "#363636";
+export const BLACK = "#000000";
 
-const ONLINE_STATUS = "#46A575";
-const OFFLINE_STATUS = "#D04949";
+export const ONLINE_STATUS = "#46A575";
+export const OFFLINE_STATUS = "#D04949";
 
 const STAR_ACTIONS = "#FFA200";
 const LIKE_ACTIONS = "#B644B2";
 const DISLIKE_ACTIONS = "#363636";
 const FLASH_ACTIONS = "#5028D7";
 
-const MEDIUM_FONT = "Roboto-Medium";
-const LIGHT_FONT = "Roboto-Light";
+export const MEDIUM_FONT = "Roboto-Medium";
+export const LIGHT_FONT = "Roboto-Light";
 
-const DIMENSION_WIDTH = Dimensions.get("window").width;
-const DIMENSION_HEIGHT = Dimensions.get("window").height;
+export const DIMENSION_WIDTH = Dimensions.get("window").width;
+export const DIMENSION_HEIGHT = Dimensions.get("window").height;
 
 export default StyleSheet.create({
   // COMPONENT - CITY

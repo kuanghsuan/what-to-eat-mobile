@@ -29,7 +29,7 @@ export default StyleSheet.create({
     overflow: "hidden",
     borderRadius: 20,
     height: 622,
-    width: 370,
+    width: 366,
   },
   overlayLabels: {
     fontSize: 45,

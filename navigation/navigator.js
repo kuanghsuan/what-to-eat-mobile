@@ -1,4 +1,8 @@
-import { createAppContainer, createBottomTabNavigator, createSwitchNavigator } from "react-navigation";
+import {
+  createAppContainer,
+  createBottomTabNavigator,
+  createSwitchNavigator,
+} from "react-navigation";
 import { createStackNavigator } from "react-navigation-stack";
 import { Text } from "react-native";
 import Icon from "../components/Icon";
@@ -8,12 +12,10 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import MatchesScreen from "../screens/MatchesScreen";
-import SelectTagScreen from '../screens/SelectTagScreen';
+import SelectTagScreen from "../screens/SelectTagScreen";
 
 const SelectNavigator = createStackNavigator({
-  
-     SelectTagScreen,
-  
+  SelectTagScreen,
 });
 
 const TinderNavigator = createBottomTabNavigator(
@@ -31,45 +33,45 @@ const TinderNavigator = createBottomTabNavigator(
         },
       },
     },
-    Matches: {
-      screen: MatchesScreen,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => {
-          const iconFocused = focused ? "#7444C0" : "#363636";
-          return (
-            <Text style={[styles.iconMenu, { color: iconFocused }]}>
-              <Icon name="heart" />
-            </Text>
-          );
-        },
-      },
-    },
-    Chat: {
-      screen: MessagesScreen,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => {
-          const iconFocused = focused ? "#7444C0" : "#363636";
-          return (
-            <Text style={[styles.iconMenu, { color: iconFocused }]}>
-              <Icon name="chat" />
-            </Text>
-          );
-        },
-      },
-    },
-    Profile: {
-      screen: ProfileScreen,
-      navigationOptions: {
-        tabBarIcon: ({ focused }) => {
-          const iconFocused = focused ? "#7444C0" : "#363636";
-          return (
-            <Text style={[styles.iconMenu, { color: iconFocused }]}>
-              <Icon name="user" />
-            </Text>
-          );
-        },
-      },
-    },
+    // Matches: {
+    //   screen: MatchesScreen,
+    //   navigationOptions: {
+    //     tabBarIcon: ({ focused }) => {
+    //       const iconFocused = focused ? "#7444C0" : "#363636";
+    //       return (
+    //         <Text style={[styles.iconMenu, { color: iconFocused }]}>
+    //           <Icon name="heart" />
+    //         </Text>
+    //       );
+    //     },
+    //   },
+    // },
+    // Chat: {
+    //   screen: MessagesScreen,
+    //   navigationOptions: {
+    //     tabBarIcon: ({ focused }) => {
+    //       const iconFocused = focused ? "#7444C0" : "#363636";
+    //       return (
+    //         <Text style={[styles.iconMenu, { color: iconFocused }]}>
+    //           <Icon name="chat" />
+    //         </Text>
+    //       );
+    //     },
+    //   },
+    // },
+    // Profile: {
+    //   screen: ProfileScreen,
+    //   navigationOptions: {
+    //     tabBarIcon: ({ focused }) => {
+    //       const iconFocused = focused ? "#7444C0" : "#363636";
+    //       return (
+    //         <Text style={[styles.iconMenu, { color: iconFocused }]}>
+    //           <Icon name="user" />
+    //         </Text>
+    //       );
+    //     },
+    //   },
+    // },
   },
   {
     tabBarOptions: {
@@ -95,9 +97,8 @@ const TinderNavigator = createBottomTabNavigator(
   }
 );
 
-
 const MainNavigator = createSwitchNavigator({
-  select: SelectNavigator,
+  // select: SelectNavigator,
   menu: TinderNavigator,
 });
 

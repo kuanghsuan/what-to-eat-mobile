@@ -1,10 +1,10 @@
-import CardStack, { Card } from "react-native-card-stack-swiper";
 import {
   Dimensions,
   ImageBackground,
   StyleSheet,
   Text,
   View,
+  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
@@ -16,7 +16,9 @@ import { fetchRestaurantsData } from "../utils/api_utils";
 import { WHITE } from "../assets/styles/index";
 import OverlayLabel from "../components/OverlayLabels";
 import styles from "../assets/styles";
-import cardItemStyle from "../assets/styles/cardItem";
+import cardItemStyle from "../assets/styles/CardItemStyle";
+import MyIconButton from "../components/IconButton";
+import buttonStyles from "../assets/styles/ButtonStyle";
 
 const Home = () => {
   // 1. have cards as state
@@ -32,6 +34,7 @@ const Home = () => {
 
   const cardHeight = cardItemStyle.containerCardItem.height;
   const cardWidth = cardItemStyle.containerCardItem.width;
+  const DIMENSION_WIDTH = Dimensions.get("window").width;
 
   return (
     <View style={styles.bg}>
@@ -41,6 +44,8 @@ const Home = () => {
       </View>
       <View>
         <Swiper
+          cardVerticalMargin={20}
+          cardHorizontalMargin={(DIMENSION_WIDTH - cardWidth) / 2.0}
           backgroundColor={WHITE}
           cards={restaurantsData}
           infinite={true}
@@ -68,7 +73,9 @@ const Home = () => {
           overlayLabels={{
             left: {
               title: "NOPE",
-              element: <OverlayLabel label="NOPE" color="#E5566D" />,
+              element: (
+                <OverlayLabel label="NOPE" color="#E5566D" direction="LEFT" />
+              ),
               style: {
                 label: {
                   backgroundColor: "black",
@@ -87,7 +94,9 @@ const Home = () => {
             },
             right: {
               title: "YES",
-              element: <OverlayLabel label="YES!" color="#4CCC93" />,
+              element: (
+                <OverlayLabel label="YES!" color="#4CCC93" direction="RIGHT" />
+              ),
               style: {
                 label: {
                   backgroundColor: "black",
@@ -149,6 +158,11 @@ const Home = () => {
             console.log(cardIndex);
           }}
         ></Swiper>
+      </View>
+      <View style={buttonStyles.buttonContainer}>
+        <MyIconButton name="close" backgroundColor="white" color="#A29FBE" />
+        <MyIconButton name="camera" backgroundColor="white" color="#A29FBE" />
+        <MyIconButton name="heart" backgroundColor="white" color="#FF636B" />
       </View>
     </View>
   );
