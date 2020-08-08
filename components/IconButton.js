@@ -6,6 +6,8 @@ import buttonStyles from "../assets/styles/ButtonStyle";
 import { WHITE, GRAY } from "../assets/styles/index";
 import { IconButton, Colors } from "react-native-paper";
 
+// might change to scaling button later
+// find a better icon collection package
 const MyIconButton = ({ onPress, name, backgroundColor, color }) => (
   //   <TouchableOpacity
   //     style={[buttonStyles.singleButton, { backgroundColor }]}
@@ -15,7 +17,7 @@ const MyIconButton = ({ onPress, name, backgroundColor, color }) => (
   <IconButton
     icon={name}
     color={color}
-    size={20}
+    size={40}
     onPress={() => console.log("Pressed")}
   />
   // {/* <Icon name={name} size={30} color={color} /> */}

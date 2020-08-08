@@ -22,6 +22,6 @@ export default StyleSheet.create({
     flexDirection: "row",
     backgroundColor: "transparent",
     justifyContent: "space-around",
-    marginTop: 650,
+    marginTop: 670,
   },
 });
