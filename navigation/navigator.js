@@ -13,9 +13,14 @@ import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 import SelectTagScreen from "../screens/SelectTagScreen";
+import StoreDetailScreen from '../screens/StoreDetailScreen';
 
 const SelectNavigator = createStackNavigator({
   SelectTagScreen,
+});
+
+const StoreNavigator = createStackNavigator({
+  StoreDetailScreen,
 });
 
 const TinderNavigator = createBottomTabNavigator(
@@ -98,7 +103,7 @@ const TinderNavigator = createBottomTabNavigator(
 );
 
 const MainNavigator = createSwitchNavigator({
-  // select: SelectNavigator,
+  //select: StoreNavigator,
   menu: TinderNavigator,
 });
 
