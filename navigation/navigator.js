@@ -1,8 +1,5 @@
-import {
-  createAppContainer,
-  createBottomTabNavigator,
-  createSwitchNavigator,
-} from "react-navigation";
+import { createAppContainer, createSwitchNavigator } from "react-navigation";
+import { createBottomTabNavigator } from "react-navigation-tabs";
 import { createStackNavigator } from "react-navigation-stack";
 import { Text } from "react-native";
 import Icon from "../components/Icon";
@@ -13,7 +10,8 @@ import ProfileScreen from "../screens/ProfileScreen";
 import MessagesScreen from "../screens/MessagesScreen";
 import MatchesScreen from "../screens/MatchesScreen";
 import SelectTagScreen from "../screens/SelectTagScreen";
-import StoreDetailScreen from '../screens/StoreDetailScreen';
+import StoreDetailScreen from "../screens/StoreDetailScreen";
+import AnimatedScreen from "../screens/MainNavigation";
 
 const SelectNavigator = createStackNavigator({
   SelectTagScreen,
@@ -26,7 +24,7 @@ const StoreNavigator = createStackNavigator({
 const TinderNavigator = createBottomTabNavigator(
   {
     Explore: {
-      screen: HomeScreen,
+      screen: AnimatedScreen,
       navigationOptions: {
         tabBarIcon: ({ focused }) => {
           const iconFocused = focused ? "#7444C0" : "#363636";
