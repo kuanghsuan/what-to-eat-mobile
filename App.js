@@ -4,6 +4,7 @@ import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import TinderNavigator from "./navigation/navigator";
 import Appp from "./screens/MainNavigation";
+import { View } from "react-native";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -15,6 +16,7 @@ const fetchFonts = () => {
 };
 
 export default function App() {
+  console.log("entry");
   const [fontLoaded, setFontLoaded] = useState(false);
   if (!fontLoaded) {
     return (
@@ -26,6 +28,6 @@ export default function App() {
       />
     );
   }
-  return <TinderNavigator />;
-  // return <Appp />;
+  // return <TinderNavigator />;
+  return <Appp />;
 }

@@ -8,19 +8,24 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import CardItem from "../components/CardItem";
-import City from "../components/City";
-import Filters from "../components/Filters";
 import Swiper from "react-native-deck-swiper";
+
+// data
 import { fetchRestaurantsData } from "../utils/api_utils";
+
+// styles
 import { WHITE } from "../assets/styles/index";
-import OverlayLabel from "../components/OverlayLabels";
 import styles from "../assets/styles";
 import cardItemStyle from "../assets/styles/CardItemStyle";
-import MyIconButton from "../components/IconButton";
 import buttonStyles from "../assets/styles/ButtonStyle";
+// components
+import CardItem from "../components/CardItem";
+import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
+import MyIconButton from "../components/IconButton";
+import Filters from "../components/Filters";
+import City from "../components/City";
 
-const MyHomeScreen = () => {
+const MyHomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
   useEffect(() => {
     fetchRestaurantsData(6, 2).then((res) => {
@@ -118,6 +123,8 @@ const MyHomeScreen = () => {
               restaurant && (
                 <View style={cardItemStyle.cardContainer}>
                   <CardItem
+                    navigation={navigation}
+                    data={restaurant}
                     imageUrl={restaurant.image_url}
                     name={restaurant.name}
                     description={restaurant.categories.map(

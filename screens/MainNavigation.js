@@ -12,7 +12,8 @@ import DetailScreen from "../screens/DetailScreen";
 
 const Stack = createSharedElementStackNavigator();
 
-const AnimatedScreen = ({ navigation }) => {
+const Appp = ({ navigation }) => {
+  console.log("animate");
   return (
     <NavigationContainer>
       <Stack.Navigator
@@ -35,10 +36,27 @@ const AnimatedScreen = ({ navigation }) => {
               };
             },
           })}
+          sharedElementsConfig={(route) => {
+            const { data } = route.params;
+            return [
+              {
+                id: `item.${data.id}.name`,
+                animation: "move",
+                resize: "clip",
+                align: "left-center",
+              },
+              {
+                id: `item.${data.id}.description`,
+                animation: "move",
+                resize: "clip",
+                align: "left-center",
+              },
+            ];
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 };
 
-export default AnimatedScreen;
+export default Appp;
