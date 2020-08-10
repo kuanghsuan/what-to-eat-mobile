@@ -55,9 +55,11 @@ export default StyleSheet.create({
   //     backgroundColor: "white",
   //   },
   nameCardItem: {
+    position: "absolute",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
+    height: 104,
     marginTop: 486,
     marginBottom: 32,
     marginLeft: 48,

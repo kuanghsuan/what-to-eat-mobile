@@ -162,13 +162,6 @@ export default StyleSheet.create({
   // CONTAINER - HOME
   containerHome: {},
 
-  // CONTAINER - MATCHES
-  //   containerMatches: {
-  //     justifyContent: "space-between",
-  //     flex: 1,
-  //     paddingHorizontal: 10,
-  //   },
-
   // CONTAINER - MESSAGES
   containerMessages: {
     justifyContent: "space-between",

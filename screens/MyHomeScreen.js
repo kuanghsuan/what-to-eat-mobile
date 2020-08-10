@@ -126,10 +126,6 @@ const MyHomeScreen = ({ navigation }) => {
                     navigation={navigation}
                     data={restaurant}
                     imageUrl={restaurant.image_url}
-                    name={restaurant.name}
-                    description={restaurant.categories.map(
-                      (category) => category.title + " "
-                    )}
                   />
                 </View>
               )

@@ -16,23 +16,29 @@ import TouchableScale from "react-native-touchable-scale";
 import { SharedElement } from "react-navigation-shared-element";
 
 const CardItem = (props) => {
-  const { navigation, data, description, imageUrl, name } = props;
-  console.log("hahahahhaha");
+  const { navigation, data, imageUrl } = props;
+  const description = data.categories.map((category) => category.title + " ");
   return (
-    <ImageBackground
-      source={{ uri: imageUrl }}
-      style={cardItemStyle.containerCardItem}
-    >
+    <View style={cardItemStyle.containerCardItem}>
+      <SharedElement id={`item.${data.id}.image`}>
+        <Image
+          resizeMode="cover"
+          source={{ uri: imageUrl }}
+          style={{ height: "100%", width: "100%" }}
+        />
+      </SharedElement>
+
       <View style={cardItemStyle.nameCardItem}>
         <TouchableScale
           activeScale={0.9}
           tension={50}
           friction={7}
           useNativeDriver
+          onPress={() => navigation.navigate("DetailScreen", { data: data })}
         >
-          {name && (
+          {data.name && (
             <SharedElement id={`item.${data.id}.name`}>
-              <Text style={cardItemStyle.nameTextCardItem}>{name}</Text>
+              <Text style={cardItemStyle.nameTextCardItem}>{data.name}</Text>
             </SharedElement>
           )}
           {description && (
@@ -44,11 +50,7 @@ const CardItem = (props) => {
           )}
         </TouchableScale>
       </View>
-      <Button
-        title={"touch me!!!!!"}
-        onPress={() => navigation.navigate("DetailScreen", { data: data })}
-      />
-    </ImageBackground>
+    </View>
   );
 };
 
