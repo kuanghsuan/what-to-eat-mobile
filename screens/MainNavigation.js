@@ -16,8 +16,8 @@ const Stack = createSharedElementStackNavigator();
 
 const config = {
   config: {
-    duration: 80,
-    easing: Easing.out(Easing.poly(4)),
+    duration: 50,
+    easing: Easing.bezier(0.77, -0.03, 0.1, 1.02),
     timing: Animated.timing,
     useNativeDriver: true,
   },
@@ -34,16 +34,7 @@ const Appp = ({ navigation }) => {
           headerShown: false,
         }}
       >
-        <Stack.Screen
-          name="MyHomeScreen"
-          component={MyHomeScreen}
-          options={(navigation) => ({
-            transitionSpec: {
-              open: config,
-              close: config,
-            },
-          })}
-        />
+        <Stack.Screen name="MyHomeScreen" component={MyHomeScreen} />
         <Stack.Screen
           name="DetailScreen"
           component={DetailScreen}
@@ -72,13 +63,13 @@ const Appp = ({ navigation }) => {
               },
               {
                 id: `item.${data.id}.name`,
-                animation: "move",
+                animation: "fade",
                 resize: "clip",
                 align: "left-center",
               },
               {
                 id: `item.${data.id}.description`,
-                animation: "move",
+                animation: "fade",
                 resize: "clip",
                 align: "left-center",
               },
