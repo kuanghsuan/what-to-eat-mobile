@@ -73,7 +73,7 @@ export default StyleSheet.create({
   nameTextCardItem: {
     fontFamily: MEDIUM_FONT,
     color: BLACK,
-    fontSize: 24,
+    fontSize: 20,
     marginLeft: 24,
     marginBottom: 8,
     width: 300,

@@ -8,21 +8,26 @@ import {
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import CardItem from "../components/CardItem";
-import City from "../components/City";
-import Filters from "../components/Filters";
 import Swiper from "react-native-deck-swiper";
+
+// data
 import { fetchRestaurantsData } from "../utils/api_utils";
+//package
+import TouchableScale from "react-native-touchable-scale";
+// styles
 import { WHITE } from "../assets/styles/index";
-import OverlayLabel from "../components/OverlayLabels";
 import styles from "../assets/styles";
 import cardItemStyle from "../assets/styles/CardItemStyle";
-import MyIconButton from "../components/IconButton";
 import buttonStyles from "../assets/styles/ButtonStyle";
+import { Feather, Foundation, AntDesign } from "@expo/vector-icons";
+// components
+import CardItem from "../components/CardItem";
+import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
+import MyIconButton from "../components/IconButton";
+import Filters from "../components/Filters";
+import City from "../components/City";
 
-const Home = () => {
-  // 1. have cards as state
-  // 2. on Home component load, fetch cards and set state
+const HomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
   useEffect(() => {
     fetchRestaurantsData(6, 2).then((res) => {
@@ -120,37 +125,13 @@ const Home = () => {
               restaurant && (
                 <View style={cardItemStyle.cardContainer}>
                   <CardItem
+                    navigation={navigation}
+                    data={restaurant}
                     imageUrl={restaurant.image_url}
-                    name={restaurant.name}
-                    description={restaurant.categories.map(
-                      (category) => category.title + " "
-                    )}
                   />
                 </View>
               )
             );
-          }}
-          //function to be called when a card is swiped left. it receives the swiped card index
-          onSwipedLeft={(cardIndex) => {
-            console.log(cardIndex);
-          }}
-          // function to be called when a card is swiped right. it receives the swiped card index
-          onSwipedRight={(cardIndex) => {
-            console.log(cardIndex);
-          }}
-          // function to be called when a card is swiped right. it receives the swiped card index
-          // funciton : redirect to Restaurant Details
-          onSwipedTop={(cardIndex) => {
-            console.log(cardIndex);
-          }}
-          // function to be called when a card is swiped right. it receives the swiped card index
-          // function : nutural(maybe)
-          onSwipedBottom={(cardIndex) => {
-            console.log(cardIndex);
-          }}
-          //function to be called when all cards have been swiped
-          onSwipedAll={() => {
-            console.log("onSwipedAll");
           }}
           //function to be called when tapping a card. it receives the tapped card index
           //function : next photo
@@ -160,12 +141,15 @@ const Home = () => {
         ></Swiper>
       </View>
       <View style={buttonStyles.buttonContainer}>
-        <MyIconButton name="close" backgroundColor="white" color="#A29FBE" />
-        <MyIconButton name="camera" backgroundColor="white" color="#A29FBE" />
-        <MyIconButton name="heart" backgroundColor="white" color="#FF636B" />
+        <TouchableScale activeScale={7}>
+          <AntDesign name="closecircleo" size={50} color="#20B2AA" />
+        </TouchableScale>
+
+        <Feather name="meh" size={50} color="#20B2AA" />
+        <Foundation name="heart" size={50} color="#20B2AA" />
       </View>
     </View>
   );
 };
 
-export default Home;
+export default HomeScreen;

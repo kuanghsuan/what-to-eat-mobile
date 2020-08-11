@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
   Button,
+  StyleSheet,
 } from "react-native";
 
 import Icon from "./Icon";
@@ -14,6 +15,7 @@ import styles from "../assets/styles";
 import cardItemStyle from "../assets/styles/CardItemStyle";
 import TouchableScale from "react-native-touchable-scale";
 import { SharedElement } from "react-navigation-shared-element";
+import Tags from "react-native-tags";
 
 const CardItem = (props) => {
   const { navigation, data, imageUrl } = props;
@@ -43,9 +45,14 @@ const CardItem = (props) => {
           )}
           {description && (
             <SharedElement id={`item.${data.id}.description`}>
-              <Text style={cardItemStyle.descriptionCardItem}>
-                {description}
-              </Text>
+              <View style={{ marginLeft: 20 }}>
+                <Tags
+                  initialTags={description.slice(0, 2)}
+                  readonly={true}
+                  tagContainerStyle={myStyles.tags}
+                  tagTextStyle={myStyles.tags}
+                />
+              </View>
             </SharedElement>
           )}
         </TouchableScale>
@@ -53,5 +60,19 @@ const CardItem = (props) => {
     </View>
   );
 };
+const myStyles = StyleSheet.create({
+  resTitle: {
+    fontFamily: "Roboto-Medium",
+    color: "#000000",
+    fontSize: 24,
+  },
+
+  tags: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "bold",
+    backgroundColor: "#20B2AA",
+  },
+});
 
 export default CardItem;

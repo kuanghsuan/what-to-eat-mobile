@@ -1,10 +1,7 @@
-import { StatusBar } from "expo-status-bar";
 import React, { useState } from "react";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
-import TinderNavigator from "./navigation/navigator";
-import Appp from "./screens/MainNavigation";
-import { View } from "react-native";
+import MainNavigator from "./screens/MainNavigation";
 
 const fetchFonts = () => {
   return Font.loadAsync({
@@ -28,6 +25,5 @@ export default function App() {
       />
     );
   }
-  // return <TinderNavigator />;
-  return <Appp />;
+  return <MainNavigator />;
 }

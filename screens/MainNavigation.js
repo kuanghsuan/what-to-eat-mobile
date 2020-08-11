@@ -9,7 +9,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "react-navigation-stack";
 
 //Screens
-import MyHomeScreen from "../screens/MyHomeScreen";
+import HomeScreen from "../screens/HomeScreen";
 import DetailScreen from "../screens/DetailScreen";
 
 const Stack = createSharedElementStackNavigator();
@@ -23,18 +23,18 @@ const config = {
   },
 };
 
-const Appp = ({ navigation }) => {
+const MainNavigator = ({ navigation }) => {
   console.log("animate");
 
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="MyHomeScreen"
+        initialRouteName="HomeScreen"
         screenOptions={{
           headerShown: false,
         }}
       >
-        <Stack.Screen name="MyHomeScreen" component={MyHomeScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
         <Stack.Screen
           name="DetailScreen"
           component={DetailScreen}
@@ -81,4 +81,4 @@ const Appp = ({ navigation }) => {
   );
 };
 
-export default Appp;
+export default MainNavigator;
