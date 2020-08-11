@@ -55,9 +55,11 @@ export default StyleSheet.create({
   //     backgroundColor: "white",
   //   },
   nameCardItem: {
+    position: "absolute",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
+    height: 104,
     marginTop: 486,
     marginBottom: 32,
     marginLeft: 48,
@@ -71,7 +73,7 @@ export default StyleSheet.create({
   nameTextCardItem: {
     fontFamily: MEDIUM_FONT,
     color: BLACK,
-    fontSize: 24,
+    fontSize: 20,
     marginLeft: 24,
     marginBottom: 8,
     width: 300,

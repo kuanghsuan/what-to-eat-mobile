@@ -5,70 +5,74 @@ import {
   Text,
   TouchableOpacity,
   View,
+  Button,
+  StyleSheet,
 } from "react-native";
 
 import Icon from "./Icon";
 import React from "react";
 import styles from "../assets/styles";
 import cardItemStyle from "../assets/styles/CardItemStyle";
+import TouchableScale from "react-native-touchable-scale";
+import { SharedElement } from "react-navigation-shared-element";
+import Tags from "react-native-tags";
 
 const CardItem = (props) => {
-  const {
-    actions,
-    description,
-    imageUrl,
-    name,
-    onPressLeft,
-    onPressRight,
-  } = props;
-
+  const { navigation, data, imageUrl } = props;
+  const description = data.categories.map((category) => category.title + " ");
   return (
-    <ImageBackground
-      source={{ uri: imageUrl }}
-      style={cardItemStyle.containerCardItem}
-    >
-      {name && (
-        <View style={cardItemStyle.nameCardItem}>
-          <Text style={cardItemStyle.nameTextCardItem}>{name}</Text>
-          {description && (
-            <Text style={cardItemStyle.descriptionCardItem}>{description}</Text>
+    <View style={cardItemStyle.containerCardItem}>
+      <SharedElement id={`item.${data.id}.image`}>
+        <Image
+          resizeMode="cover"
+          source={{ uri: imageUrl }}
+          style={{ height: "100%", width: "100%" }}
+        />
+      </SharedElement>
+
+      <View style={cardItemStyle.nameCardItem}>
+        <TouchableScale
+          activeScale={0.9}
+          tension={50}
+          friction={7}
+          useNativeDriver
+          onPress={() => navigation.navigate("DetailScreen", { data: data })}
+        >
+          {data.name && (
+            <SharedElement id={`item.${data.id}.name`}>
+              <Text style={cardItemStyle.nameTextCardItem}>{data.name}</Text>
+            </SharedElement>
           )}
-        </View>
-      )}
-
-      {/* ACTIONS is for bottom bar later(like/dislike/nutural...) */}
-      {/* {actions && (
-        <View style={styles.actionsCardItem}>
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.star}>
-              <Icon name="star" />
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.button} onPress={() => onPressLeft()}>
-            <Text style={styles.like}>
-              <Icon name="like" />
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => onPressRight()}
-          >
-            <Text style={styles.dislike}>
-              <Icon name="dislike" />
-            </Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.miniButton}>
-            <Text style={styles.flash}>
-              <Icon name="flash" />
-            </Text>
-          </TouchableOpacity>
-        </View>
-      )} */}
-    </ImageBackground>
+          {description && (
+            <SharedElement id={`item.${data.id}.description`}>
+              <View style={{ marginLeft: 20 }}>
+                <Tags
+                  initialTags={description.slice(0, 2)}
+                  readonly={true}
+                  tagContainerStyle={myStyles.tags}
+                  tagTextStyle={myStyles.tags}
+                />
+              </View>
+            </SharedElement>
+          )}
+        </TouchableScale>
+      </View>
+    </View>
   );
 };
+const myStyles = StyleSheet.create({
+  resTitle: {
+    fontFamily: "Roboto-Medium",
+    color: "#000000",
+    fontSize: 24,
+  },
+
+  tags: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "bold",
+    backgroundColor: "#20B2AA",
+  },
+});
 
 export default CardItem;
