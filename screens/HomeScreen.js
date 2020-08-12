@@ -144,9 +144,12 @@ const HomeScreen = ({ navigation }) => {
         <TouchableScale activeScale={7}>
           <AntDesign name="closecircleo" size={50} color="#20B2AA" />
         </TouchableScale>
-
-        <Feather name="meh" size={50} color="#20B2AA" />
-        <Foundation name="heart" size={50} color="#20B2AA" />
+        <TouchableScale activeScale={7}>
+          <Feather name="meh" size={50} color="#20B2AA" />
+        </TouchableScale>
+        <TouchableScale activeScale={7}>
+          <Foundation name="heart" size={50} color="#20B2AA" />
+        </TouchableScale>
       </View>
     </View>
   );

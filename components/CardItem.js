@@ -20,6 +20,7 @@ import Tags from "react-native-tags";
 const CardItem = (props) => {
   const { navigation, data, imageUrl } = props;
   const description = data.categories.map((category) => category.title + " ");
+  console.log(navigation);
   return (
     <View style={cardItemStyle.containerCardItem}>
       <SharedElement id={`item.${data.id}.image`}>
