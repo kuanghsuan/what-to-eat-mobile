@@ -32,7 +32,7 @@ const CardItem = (props) => {
 
       <View style={cardItemStyle.nameCardItem}>
         <TouchableScale
-          activeScale={0.9}
+          activeScale={20}
           tension={50}
           friction={7}
           useNativeDriver

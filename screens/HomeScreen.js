@@ -140,7 +140,7 @@ const HomeScreen = ({ navigation }) => {
         ></Swiper>
       </View>
       <View style={buttonStyles.buttonContainer}>
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale activeScale={20}>
           <AntDesign name="closecircleo" size={50} color="#20B2AA" />
         </TouchableScale>
 

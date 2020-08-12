@@ -6,7 +6,7 @@ A ML-based restaurant recommendation app written in React-Native with Expo.
 
 ```
 $ node -v                         // make sure your node version is greater than 10.13.0
-$ npm install -g expo-cli.        // install the expo cli
+$ npm install -g expo-cli.        // install / update the expo cli
 ```
 
 Further more detail on how to set up an react-native app with [expo](https://docs.expo.io/tutorial/planning/?redirected)
@@ -24,7 +24,7 @@ $ yarn install
 1.  Install the [XCODE](https://codewithchris.com/xcode-tutorial/). (Note: Only for developer whoe use <stronger>macOS</stronger> machine.)
 2.  Install the [Android Studio](https://www.tutorialspoint.com/android/android_studio.htm).
 3.  Open your xcode simulator or android simulator.
-4.  Run `yarn start` in the root of project.
+4.  Run `yarn start` in the root of project. (if you encounter any weird issue, do `rm -rf node_modules/` and then `yarn install`)
 5.  Press `a` for Android simulator, or `i` for IOS simulator.
 6.  Press `r` to restart bundler, or `shift+R` to restart and clear cache.
 7.  If you want to run on real device, just download the 'Expo' in the App store, and scan the QR-code.

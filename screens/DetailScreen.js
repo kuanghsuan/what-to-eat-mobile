@@ -72,13 +72,13 @@ const DetailScreen = (props) => {
           justifyContent: "space-around",
         }}
       >
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale activeScale={20}>
           <Feather name="map-pin" size={30} color="#20B2AA" />
         </TouchableScale>
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale activeScale={20}>
           <Feather name="phone-call" size={30} color="#20B2AA" />
         </TouchableScale>
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale activeScale={20}>
           <FontAwesome name="yelp" size={27} color="#20B2AA" />
         </TouchableScale>
       </View>
