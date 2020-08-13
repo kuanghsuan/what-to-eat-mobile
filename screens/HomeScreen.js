@@ -1,31 +1,30 @@
+import { AntDesign, Feather, Foundation } from "@expo/vector-icons";
 import {
+  Button,
   Dimensions,
   ImageBackground,
   StyleSheet,
   Text,
   View,
-  Button,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
+// components
+import CardItem from "../components/CardItem";
+import City from "../components/City";
+import Filters from "../components/Filters";
+import MyIconButton from "../components/IconButton";
+import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
 import Swiper from "react-native-deck-swiper";
-
-// data
-import { fetchRestaurantsData } from "../utils/api_utils";
 //package
 import TouchableScale from "react-native-touchable-scale";
 // styles
 import { WHITE } from "../assets/styles/index";
-import styles from "../assets/styles";
-import cardItemStyle from "../assets/styles/CardItemStyle";
 import buttonStyles from "../assets/styles/ButtonStyle";
-import { Feather, Foundation, AntDesign } from "@expo/vector-icons";
-// components
-import CardItem from "../components/CardItem";
-import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
-import MyIconButton from "../components/IconButton";
-import Filters from "../components/Filters";
-import City from "../components/City";
+import cardItemStyle from "../assets/styles/CardItemStyle";
+// data
+import { fetchRestaurantsData } from "../utils/api_utils";
+import styles from "../assets/styles";
 
 const HomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
@@ -49,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View>
         <Swiper
-          cardVerticalMargin={20}
+          cardVerticalMargin={0.9}
           cardHorizontalMargin={(DIMENSION_WIDTH - cardWidth) / 2.0}
           backgroundColor={WHITE}
           cards={restaurantsData}
@@ -141,7 +140,7 @@ const HomeScreen = ({ navigation }) => {
         ></Swiper>
       </View>
       <View style={buttonStyles.buttonContainer}>
-        <TouchableScale activeScale={7}>
+        <TouchableScale activeScale={0.9}>
           <AntDesign name="closecircleo" size={50} color="#20B2AA" />
         </TouchableScale>
 
