@@ -1,10 +1,9 @@
 const { View, Text, Image, StyleSheet } = require("react-native");
 
-import React, { useEffect, useState } from "react";
-import { Dimensions } from "react-native";
+import { Feather, FontAwesome } from "@expo/vector-icons";
 import {
-  ScrollView,
   FlatList,
+  ScrollView,
   TouchableOpacity,
 } from "react-native-gesture-handler";
 // package
@@ -19,7 +18,11 @@ import Tags from "react-native-tags";
 import { LinearGradient } from "expo-linear-gradient";
 // fake data
 import Demo from "../data/demo";
+import { Dimensions } from "react-native";
+import Tags from "react-native-tags";
 import TouchableScale from "react-native-touchable-scale";
+// package
+const { SharedElement } = require("react-navigation-shared-element");
 // import styles from "../assets/styles";
 
 const DetailScreen = (props) => {
