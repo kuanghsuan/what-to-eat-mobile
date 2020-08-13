@@ -48,7 +48,7 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View>
         <Swiper
-          cardVerticalMargin={20}
+          cardVerticalMargin={0.9}
           cardHorizontalMargin={(DIMENSION_WIDTH - cardWidth) / 2.0}
           backgroundColor={WHITE}
           cards={restaurantsData}
@@ -140,7 +140,7 @@ const HomeScreen = ({ navigation }) => {
         ></Swiper>
       </View>
       <View style={buttonStyles.buttonContainer}>
-        <TouchableScale activeScale={20}>
+        <TouchableScale activeScale={0.9}>
           <AntDesign name="closecircleo" size={50} color="#20B2AA" />
         </TouchableScale>
 
