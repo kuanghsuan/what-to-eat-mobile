@@ -1,6 +1,5 @@
-const { View, Text, Image, StyleSheet } = require("react-native");
+import React from "react";
 
-import { Feather, FontAwesome } from "@expo/vector-icons";
 import {
   FlatList,
   ScrollView,
@@ -18,11 +17,8 @@ import Tags from "react-native-tags";
 import { LinearGradient } from "expo-linear-gradient";
 // fake data
 import Demo from "../data/demo";
-import { Dimensions } from "react-native";
-import Tags from "react-native-tags";
+import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
 import TouchableScale from "react-native-touchable-scale";
-// package
-const { SharedElement } = require("react-navigation-shared-element");
 // import styles from "../assets/styles";
 
 const DetailScreen = (props) => {
@@ -81,13 +77,13 @@ const DetailScreen = (props) => {
             justifyContent: "space-around",
           }}
         >
-          <TouchableScale activeScale={20}>
+          <TouchableScale activeScale={0.9}>
             <Feather name="map-pin" size={30} color="#20B2AA" />
           </TouchableScale>
-          <TouchableScale activeScale={20}>
+          <TouchableScale activeScale={0.9}>
             <Feather name="phone-call" size={30} color="#20B2AA" />
           </TouchableScale>
-          <TouchableScale activeScale={20}>
+          <TouchableScale activeScale={0.9}>
             <FontAwesome name="yelp" size={27} color="#20B2AA" />
           </TouchableScale>
         </View>

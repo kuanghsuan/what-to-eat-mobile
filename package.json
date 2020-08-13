@@ -14,16 +14,10 @@
     "@react-navigation/stack": "^5.9.0",
     "acorn": "^7.4.0",
     "axios": "^0.19.2",
-<<<<<<< HEAD
-    "expo": "^36.0.0",
-    "expo-font": "~8.0.0",
-    "expo-linear-gradient": "~8.0.0",
-    "expo-status-bar": "^1.0.2",
-=======
     "expo": "^38.0.0",
     "expo-font": "~8.2.1",
+    "expo-linear-gradient": "^8.2.1",
     "expo-status-bar": "^1.0.0",
->>>>>>> 2eb0606b2357ddcccc42026bfeff2b52918783fd
     "native": "^0.3.3",
     "paper": "^0.12.11",
     "react": "16.11.0",
