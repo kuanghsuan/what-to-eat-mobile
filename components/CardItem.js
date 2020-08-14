@@ -1,21 +1,21 @@
 import {
+  Button,
   Dimensions,
   Image,
   ImageBackground,
+  StyleSheet,
   Text,
   TouchableOpacity,
   View,
-  Button,
-  StyleSheet,
 } from "react-native";
 
 import Icon from "./Icon";
 import React from "react";
-import styles from "../assets/styles";
-import cardItemStyle from "../assets/styles/CardItemStyle";
-import TouchableScale from "react-native-touchable-scale";
 import { SharedElement } from "react-navigation-shared-element";
 import Tags from "react-native-tags";
+import TouchableScale from "react-native-touchable-scale";
+import cardItemStyle from "../assets/styles/CardItemStyle";
+import styles from "../assets/styles";
 
 const CardItem = (props) => {
   const { navigation, data, imageUrl } = props;

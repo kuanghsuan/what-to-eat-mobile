@@ -1,48 +1,69 @@
-import React from "react";
-
+import {
+  AntDesign,
+  Feather,
+  FontAwesome,
+  Foundation,
+  MaterialCommunityIcons,
+} from "@expo/vector-icons";
+import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
 import {
   FlatList,
   ScrollView,
   TouchableOpacity,
 } from "react-native-gesture-handler";
-// package
-const { SharedElement } = require("react-navigation-shared-element");
-import {
-  Feather,
-  FontAwesome,
-  AntDesign,
-  Foundation,
-} from "@expo/vector-icons";
-import Tags from "react-native-tags";
-import { LinearGradient } from "expo-linear-gradient";
+
+// style
+import CentralStyle from "../assets/styles/index"
 // fake data
 import Demo from "../data/demo";
-import { View, Text, Image, StyleSheet, Dimensions } from "react-native";
+import { LinearGradient } from "expo-linear-gradient";
+import React from "react";
+import { SliderBox } from "react-native-image-slider-box";
+import Tags from "react-native-tags";
 import TouchableScale from "react-native-touchable-scale";
+
+// package
+const { SharedElement } = require("react-navigation-shared-element");
 // import styles from "../assets/styles";
 
 const DetailScreen = (props) => {
   const { width, height } = Dimensions.get("window");
   const { data } = props.route.params;
   const description = data.categories.map((category) => category.title);
+  console.log(data);
   return (
-    <View>
+    <View style={CentralStyle.bg}>
       <ScrollView>
+      <View>
+
         <SharedElement id={`item.${data.id}.image`}>
-          <Image
-            source={{ uri: data.image_url }}
-            resizeMode="cover"
-            style={{
-              width: "100%",
-              height: height - 484,
-              borderBottomLeftRadius: 20,
-              borderBottomRightRadius: 20,
-            }}
-          />
+        <SliderBox
+              images={data.photos}
+              resizeMode="cover"
+              dotColor="#FFEE58"
+              ImageComponentStyle={{
+                width: "100%",
+                height: height - 484,
+                borderBottomLeftRadius: 20,
+                borderBottomRightRadius: 20,}}
+        />
         </SharedElement>
 
+
+        <View style={styles.timerContainer}>
+            <MaterialCommunityIcons name="clock-fast" size={24} color="white" />
+            <Text style={{color:"#FFFFFF", fontWeight:"bold",fontSize:18,left:3}}>20min</Text>
+        </View>
+        <View style={styles.rating}>
+          <Text style={{color:"white",fontSize:20,fontWeight:"bold"}}>4.5</Text>
+        </View>
+      </View>
+
+
         <View style={{ padding: 16 }}>
+
           <SharedElement id={`item.${data.id}.name`}>
+            <View style={{flexDirection:"row", justifyContent:"space-between",alignItems:"center",height:30}}>
             <Text style={styles.resTitle}>{data.name}</Text>
             <View
               style={{
@@ -52,16 +73,18 @@ const DetailScreen = (props) => {
                 paddingTop: 5,
               }}
             >
-              <Feather name="dollar-sign" size={12} color="#20B2AA" />
-              <Feather name="dollar-sign" size={12} color="#20B2AA" />
+              <Feather name="dollar-sign" size={13} color="#20B2AA" />
+              <Feather name="dollar-sign" size={13} color="#20B2AA" />
+            </View>
             </View>
           </SharedElement>
+
           <SharedElement id={`item.${data.id}.description`}>
-            <View style={{ marginTop: 8 }}>
+            <View style={{ marginTop: 8, shadowColor:"#808080", shadowOpacity:0.1}}>
               <Tags
                 initialTags={description}
                 readonly={true}
-                tagContainerStyle={styles.tags}
+                tagContainerStyle={styles.tagContainer}
                 tagTextStyle={styles.tags}
               />
             </View>
@@ -77,47 +100,19 @@ const DetailScreen = (props) => {
             justifyContent: "space-around",
           }}
         >
-          <TouchableScale activeScale={0.9}>
-            <Feather name="map-pin" size={30} color="#20B2AA" />
+          <TouchableScale activeScale={0.9} style={styles.buttonBackground}>
+            <Feather name="map-pin" size={30} color="#fff" />
+
           </TouchableScale>
-          <TouchableScale activeScale={0.9}>
-            <Feather name="phone-call" size={30} color="#20B2AA" />
+          <Text>Direction</Text>
+          <TouchableScale activeScale={0.9}style={styles.buttonBackground}>
+            <Feather name="phone-call" size={30} color="#fff" />
           </TouchableScale>
-          <TouchableScale activeScale={0.9}>
-            <FontAwesome name="yelp" size={27} color="#20B2AA" />
+          <TouchableScale activeScale={0.9}style={styles.buttonBackground}>
+            <FontAwesome name="yelp" size={27} color="#fff" />
           </TouchableScale>
         </View>
-        <View>
-          <View
-            style={{
-              flexDirection: "row",
-              alignItems: "center",
-              justifyContent: "space-between",
-              paddingHorizontal: 16,
-              paddingVertical: 14,
-            }}
-          >
-            <Text
-              style={{
-                fontFamily: "Roboto-Medium",
-                color: "#000000",
-                fontSize: 24,
-              }}
-            >
-              Top 5 Dishes
-            </Text>
-            <TouchableOpacity>
-              <Text
-                style={{
-                  color: "#20B2AA",
-                  fontWeight: "bold",
-                  fontSize: 15,
-                }}
-              >
-                Show All
-              </Text>
-            </TouchableOpacity>
-          </View>
+        {/* <View>
           <FlatList
             horizontal={true}
             paddingHorizontal={16}
@@ -126,7 +121,7 @@ const DetailScreen = (props) => {
             renderItem={({ item }) => {
               return (
                 <View>
-                  <TouchableOpacity>
+
                     <Image
                       source={item.image}
                       style={{
@@ -136,34 +131,38 @@ const DetailScreen = (props) => {
                         borderRadius: 10,
                       }}
                     />
-                  </TouchableOpacity>
+
                 </View>
               );
             }}
           />
-        </View>
+        </View> */}
       </ScrollView>
-      <LinearGradient
-        colors={["#FFFFFF00", "#FFFFFF"]}
-        style={styles.linearGradient}
-      >
+
         <View style={styles.buttonContainer}>
-          <TouchableScale activeScale={7}>
+        <LinearGradient
+        start={[1,0.3]}
+        end={[1,1.5]}
+        colors={['transparent','rgba(0,0,0,0.8)']}
+        style={styles.linearGradient}
+      />
+          <TouchableScale activeScale={0.9}>
             <AntDesign name="closecircleo" size={50} color="#20B2AA" />
           </TouchableScale>
-          <TouchableScale activeScale={7}>
+          <TouchableScale activeScale={0.9}>
             <Feather name="meh" size={50} color="#20B2AA" />
           </TouchableScale>
-          <TouchableScale activeScale={7}>
+          <TouchableScale activeScale={0.9}>
             <Foundation name="heart" size={50} color="#20B2AA" />
           </TouchableScale>
         </View>
-      </LinearGradient>
+
     </View>
   );
 };
 
 const styles = StyleSheet.create({
+
   resTitle: {
     fontFamily: "Roboto-Medium",
     color: "#000000",
@@ -174,22 +173,68 @@ const styles = StyleSheet.create({
     fontSize: 16,
     paddingTop: 10, // this is for temp position on the description tags
   },
+  tagContainer:{
+    backgroundColor: "#20B2AA",
+
+  },
   tags: {
-    color: "#20B2AA",
+    color: "#FFFFFF",
     fontSize: 12,
-    backgroundColor: "#FFFFFF",
     fontWeight: "bold",
   },
   buttonContainer: {
     flexDirection: "row",
+    position:'absolute',
     backgroundColor: "transparent",
     justifyContent: "space-around",
-    marginTop: 670,
+    marginTop: 771,
+    width:414,
+    height:125
   },
   linearGradient: {
-    height: 50,
-    position: "absolute",
-    top: 500,
+    position:"absolute",
+    height: 135,
+    left:0,
+    right:0,
+    bottom:0,
   },
+  buttonBackground:{
+
+    borderColor:'rgba(0,0,0,0.2)',
+    shadowColor:"#808080",
+    shadowOpacity:0.3,
+    shadowRadius:5,
+    shadowOffset:{height: 1,width: 0},
+    alignItems:'center',
+    justifyContent:'center',
+    width:50,
+    height:50,
+    backgroundColor:"#20B2AA",
+    borderRadius:50,
+  },
+  timerContainer:{
+    position:"absolute",
+    flexDirection: "row",
+    alignItems:"center",
+    justifyContent: 'center',
+    height:35,
+    width:100,
+    borderRadius:10,
+    backgroundColor:"#000000",
+    opacity:0.5,
+    top:365,
+    right:15
+  },
+  rating:{
+    position:"absolute",
+    height: 40,
+    width:60,
+    borderRadius:10,
+    backgroundColor:"#ffa500",
+    alignItems:"center",
+    justifyContent:"center",
+    top:360,
+    left:15
+  }
 });
 export default DetailScreen;

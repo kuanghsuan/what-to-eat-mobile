@@ -1,22 +1,22 @@
-import React from "react";
 import "react-native-gesture-handler";
-import { Text, View, StyleSheet } from "react-native";
-import { Platform, Animated, Easing, Dimensions } from "react-native";
 
-//Package
-import { createSharedElementStackNavigator } from "react-navigation-shared-element";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "react-navigation-stack";
+import { Animated, Dimensions, Easing, Platform } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
+import DetailScreen from "../screens/DetailScreen";
 //Screens
 import HomeScreen from "../screens/HomeScreen";
-import DetailScreen from "../screens/DetailScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import React from "react";
+//Package
+import { createSharedElementStackNavigator } from "react-navigation-shared-element";
+import { createStackNavigator } from "react-navigation-stack";
 
 const Stack = createSharedElementStackNavigator();
 
 const config = {
   config: {
-    duration: 50,
+    duration: 190,
     easing: Easing.bezier(0.77, -0.03, 0.1, 1.02),
     timing: Animated.timing,
     useNativeDriver: true,
