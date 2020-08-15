@@ -237,4 +237,14 @@ export default StyleSheet.create({
     height: 20,
     paddingBottom: 7,
   },
+
+  //Tags
+  tagContainer:{
+    backgroundColor: "#20B2AA",
+  },
+  tags: {
+    color: "#FFFFFF",
+    fontSize: 12,
+    fontWeight: "bold",
+  }
 });

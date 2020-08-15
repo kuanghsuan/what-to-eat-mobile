@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ import Filters from "../components/Filters";
 import MyIconButton from "../components/IconButton";
 import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
 import Swiper from "react-native-deck-swiper";
+import CategoryFilterModal from "../components/CategoryFilterModal";
 //package
 import TouchableScale from "react-native-touchable-scale";
 // styles
@@ -28,6 +30,7 @@ import styles from "../assets/styles";
 
 const HomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
   useEffect(() => {
     fetchRestaurantsData(6, 2).then((res) => {
       if (res) {
@@ -39,12 +42,11 @@ const HomeScreen = ({ navigation }) => {
   const cardHeight = cardItemStyle.containerCardItem.height;
   const cardWidth = cardItemStyle.containerCardItem.width;
   const DIMENSION_WIDTH = Dimensions.get("window").width;
-
   return (
     <View style={styles.bg}>
       <View style={styles.top}>
         <City />
-        <Filters />
+        <Filters openModal={() => setModalVisible(true)} />
       </View>
       <View>
         <Swiper
@@ -150,8 +152,13 @@ const HomeScreen = ({ navigation }) => {
           <Foundation name="heart" size={50} color="#20B2AA" />
         </TouchableScale>
       </View>
+      <CategoryFilterModal
+        modalVisible={modalVisible}
+        closeModal={() => {
+          setModalVisible(false);
+        }}
+      />
     </View>
   );
 };
-
 export default HomeScreen;
