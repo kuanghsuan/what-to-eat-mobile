@@ -240,11 +240,23 @@ export default StyleSheet.create({
 
   //Tags
   tagContainer:{
-    backgroundColor: "#20B2AA",
+    backgroundColor: "#20B2AA"
   },
   tags: {
     color: "#FFFFFF",
     fontSize: 12,
     fontWeight: "bold",
+  },
+  filterTagContainer: {
+    justifyContent: "center",
+    backgroundColor: "#D3D3D3",
+    borderRadius: 16,
+    paddingLeft: 12,
+    paddingRight: 12,
+    height: 32,
+    margin: 4
+  },
+  selectedTag: {
+    backgroundColor: "#20B2AA"
   }
 });
