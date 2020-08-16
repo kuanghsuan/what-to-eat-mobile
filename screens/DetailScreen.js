@@ -15,8 +15,8 @@ import {
 // style
 import CentralStyle from "../assets/styles/index"
 // fake data
-import Demo from "../data/demo";
 import { LinearGradient } from "expo-linear-gradient";
+import MapView from 'react-native-maps';
 import React from "react";
 import { SliderBox } from "react-native-image-slider-box";
 import Tags from "react-native-tags";
@@ -55,7 +55,7 @@ const DetailScreen = (props) => {
             <Text style={{color:"#FFFFFF", fontWeight:"bold",fontSize:18,left:3}}>20min</Text>
         </View>
         <View style={styles.rating}>
-          <Text style={{color:"white",fontSize:20,fontWeight:"bold"}}>4.5</Text>
+              <Text style={{color:"white",fontSize:20,fontWeight:"bold"}}>{(parseFloat(data.rating)).toFixed(1)}</Text>
         </View>
       </View>
 
@@ -100,52 +100,47 @@ const DetailScreen = (props) => {
             justifyContent: "space-around",
           }}
         >
-          <TouchableScale activeScale={0.9} style={styles.buttonBackground}>
-            <Feather name="map-pin" size={30} color="#fff" />
-
-          </TouchableScale>
-          <Text>Direction</Text>
-          <TouchableScale activeScale={0.9}style={styles.buttonBackground}>
-            <Feather name="phone-call" size={30} color="#fff" />
-          </TouchableScale>
-          <TouchableScale activeScale={0.9}style={styles.buttonBackground}>
-            <FontAwesome name="yelp" size={27} color="#fff" />
-          </TouchableScale>
+          <View style={{alignItems:"center", justifyContent:"center"}}>
+            <TouchableScale activeScale={0.9} style={styles.buttonBackground}>
+              <Feather name="map-pin" size={30} color="#fff" />
+            </TouchableScale>
+            <Text style={{paddingTop:10, fontWeight:"bold", color:"gray"}}>View Map</Text>
+          </View>
+          <View style={{alignItems:"center", justifyContent:"center"}}>
+            <TouchableScale activeScale={0.9}style={styles.buttonBackground}>
+              <Feather name="phone-call" size={30} color="#fff" />
+            </TouchableScale>
+            <Text style={{paddingTop:10, fontWeight:"bold", color:"gray"}}>Call</Text>
+          </View>
+          <View style={{alignItems:"center", justifyContent:"center"}}>
+            <TouchableScale activeScale={0.9}style={styles.buttonBackground}>
+              <FontAwesome name="yelp" size={27} color="#fff" />
+            </TouchableScale>
+            <Text style={{paddingTop:10, fontWeight:"bold", color:"gray"}}>Yelp</Text>
+          </View>
         </View>
-        {/* <View>
-          <FlatList
-            horizontal={true}
-            paddingHorizontal={16}
-            data={Demo}
-            keyExtractor={(item, index) => index.toString()}
-            renderItem={({ item }) => {
-              return (
-                <View>
 
-                    <Image
-                      source={item.image}
-                      style={{
-                        width: 250,
-                        marginRight: 12,
-                        height: 150,
-                        borderRadius: 10,
-                      }}
-                    />
-
-                </View>
-              );
+        <View style={styles.mapBox}>
+          <Text style={{height:120,width:200}}>This is the restranuts address, see here! i am right here.</Text>
+          <MapView
+              style={styles.mapView}
+              initialRegion={{
+              latitude: 37.78825,
+              longitude: -122.4324,
+              latitudeDelta: 0.0922,
+              longitudeDelta: 0.0421,
             }}
           />
-        </View> */}
+        </View>
       </ScrollView>
 
-        <View style={styles.buttonContainer}>
+    <View style={styles.buttonContainer}>
         <LinearGradient
         start={[1,0.3]}
         end={[1,1.5]}
         colors={['transparent','rgba(0,0,0,0.8)']}
         style={styles.linearGradient}
-      />
+        />
           <TouchableScale activeScale={0.9}>
             <AntDesign name="closecircleo" size={50} color="#20B2AA" />
           </TouchableScale>
@@ -156,7 +151,6 @@ const DetailScreen = (props) => {
             <Foundation name="heart" size={50} color="#20B2AA" />
           </TouchableScale>
         </View>
-
     </View>
   );
 };
@@ -235,6 +229,15 @@ const styles = StyleSheet.create({
     justifyContent:"center",
     top:360,
     left:15
+  },
+  mapBox:{
+    flexDirection:"row",
+    justifyContent:"space-around",
+    alignItems:"center",
+  },
+  mapView:{
+    width:200,
+    height:120,
   }
 });
 export default DetailScreen;

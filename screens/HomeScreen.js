@@ -117,6 +117,27 @@ const HomeScreen = ({ navigation }) => {
                 },
               },
             },
+            top: {
+              title: "NEUTRAL",
+              element: (
+                <OverlayLabel label="NEUTRAL" color="#2980B9" direction="TOP" />
+              ),
+              style: {
+                label: {
+                  backgroundColor: "black",
+                  borderColor: "black",
+                  color: "white",
+                  borderWidth: 1,
+                },
+                wrapper: {
+                  flexDirection: "column",
+                  alignItems: "flex-start",
+                  justifyContent: "flex-start",
+                  marginTop: 330,
+                  marginLeft: 70,
+                },
+              },
+            },
           }}
           stackScale={2}
           renderCard={(restaurant) => {

@@ -1,7 +1,8 @@
+import { Text, View } from "react-native";
+
 import React from "react";
-import { View, Text } from "react-native";
-import { string } from "prop-types";
 import cardItemStyle from "../assets/styles/CardItemStyle";
+import { string } from "prop-types";
 
 const OverlayLabel = ({ label, color, direction }) => {
   if (direction === "RIGHT") {
@@ -18,7 +19,8 @@ const OverlayLabel = ({ label, color, direction }) => {
         <Text style={[cardItemStyle.overlayLabelText, { color }]}>{label}</Text>
       </View>
     );
-  } else {
+  };
+  if (direction === "LEFT"){
     return (
       <View
         style={[
@@ -26,6 +28,20 @@ const OverlayLabel = ({ label, color, direction }) => {
           {
             borderColor: color,
             transform: [{ rotate: "25deg" }],
+          },
+        ]}
+      >
+        <Text style={[cardItemStyle.overlayLabelText, { color }]}>{label}</Text>
+      </View>
+    );
+  } else {
+    return (
+      <View
+        style={[
+          cardItemStyle.overlayLabel,
+          {
+            borderColor: color,
+            transform: [{ rotate: "9deg" }],
           },
         ]}
       >
