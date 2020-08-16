@@ -1,12 +1,12 @@
-import React from 'react';
-import styles from '../assets/styles';
+import React from "react";
+import styles from "../assets/styles";
 
-import { Text, TouchableOpacity } from 'react-native';
-import Icon from './Icon';
+import { Text, TouchableOpacity } from "react-native";
+import Icon from "./Icon";
 
-const Filters = () => {
+const Filters = ({ openModal }) => {
   return (
-    <TouchableOpacity style={styles.filters}>
+    <TouchableOpacity style={styles.filters} onPress={openModal}>
       <Text style={styles.filtersText}>
         <Icon name="filter" /> Filters
       </Text>

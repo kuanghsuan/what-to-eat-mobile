@@ -6,6 +6,7 @@ import {
   StyleSheet,
   Text,
   View,
+  TouchableOpacity,
 } from "react-native";
 import React, { useEffect, useState } from "react";
 
@@ -16,6 +17,7 @@ import Filters from "../components/Filters";
 import MyIconButton from "../components/IconButton";
 import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
 import Swiper from "react-native-deck-swiper";
+import FilterModal from "../components/FilterModal";
 //package
 import TouchableScale from "react-native-touchable-scale";
 // styles
@@ -26,8 +28,36 @@ import cardItemStyle from "../assets/styles/CardItemStyle";
 import { fetchRestaurantsData } from "../utils/api_utils";
 import styles from "../assets/styles";
 
+//constants
+import {PRICE, MINIMUM_RATING, CATEGORY} from "../utils/constants";
+
 const HomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
+  const [modalVisible, setModalVisible] = useState(false);
+  const [filterData, setFilterData] = useState({
+    [CATEGORY]: [],
+    [PRICE]: [],
+    [MINIMUM_RATING]: []
+  });
+  const selectTag = (type, value) => {
+    const newState = Object.assign({}, filterData);
+    if (type === MINIMUM_RATING) {
+      newState[type] = [value];
+    } else {
+      newState[type].push(value);
+    }
+    setFilterData(newState);
+  };
+  const deSelectTag = (type, value) => {
+    const newState = Object.assign({}, filterData);
+    if (type === MINIMUM_RATING) {
+      newState[type] = [];
+    } else {
+      const index = newState[type].indexOf(value);
+      newState[type].splice(index, 1);
+    }
+    setFilterData(newState);
+  };
   useEffect(() => {
     fetchRestaurantsData(6, 2).then((res) => {
       if (res) {
@@ -39,12 +69,11 @@ const HomeScreen = ({ navigation }) => {
   const cardHeight = cardItemStyle.containerCardItem.height;
   const cardWidth = cardItemStyle.containerCardItem.width;
   const DIMENSION_WIDTH = Dimensions.get("window").width;
-
   return (
     <View style={styles.bg}>
       <View style={styles.top}>
         <City />
-        <Filters />
+        <Filters openModal={() => setModalVisible(true)} />
       </View>
       <View>
         <Swiper
@@ -171,8 +200,16 @@ const HomeScreen = ({ navigation }) => {
           <Foundation name="heart" size={50} color="#20B2AA" />
         </TouchableScale>
       </View>
+      <FilterModal
+        modalVisible={modalVisible}
+        selectTag = {selectTag}
+        deSelectTag = {deSelectTag}
+        data={filterData}
+        closeModal={() => {
+          setModalVisible(false);
+        }}
+      />
     </View>
   );
 };
-
 export default HomeScreen;
