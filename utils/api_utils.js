@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const SESSION_URL = "http://localhost:8000/api/session";
+const SESSION_URL = "https://what-to-eat-ml-backend.herokuapp.com/api/session";
 
 export const fetchRestaurantsData = (user_id, page_size) =>
   axios

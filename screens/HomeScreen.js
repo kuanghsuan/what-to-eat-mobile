@@ -29,7 +29,7 @@ import { fetchRestaurantsData } from "../utils/api_utils";
 import styles from "../assets/styles";
 
 //constants
-import {PRICE, MINIMUM_RATING, CATEGORY} from "../utils/constants";
+import { PRICE, MINIMUM_RATING, CATEGORY } from "../utils/constants";
 
 const HomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
@@ -37,7 +37,7 @@ const HomeScreen = ({ navigation }) => {
   const [filterData, setFilterData] = useState({
     [CATEGORY]: [],
     [PRICE]: [],
-    [MINIMUM_RATING]: []
+    [MINIMUM_RATING]: [],
   });
   const selectTag = (type, value) => {
     const newState = Object.assign({}, filterData);
@@ -59,7 +59,7 @@ const HomeScreen = ({ navigation }) => {
     setFilterData(newState);
   };
   useEffect(() => {
-    fetchRestaurantsData(6, 2).then((res) => {
+    fetchRestaurantsData(6, 5).then((res) => {
       if (res) {
         setRestaurantsData(res.data.next_restaurants);
       }
@@ -181,8 +181,8 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <FilterModal
         modalVisible={modalVisible}
-        selectTag = {selectTag}
-        deSelectTag = {deSelectTag}
+        selectTag={selectTag}
+        deSelectTag={deSelectTag}
         data={filterData}
         closeModal={() => {
           setModalVisible(false);
