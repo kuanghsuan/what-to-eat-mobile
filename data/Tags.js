@@ -57,4 +57,28 @@ module.exports = [
     imageUrl:
       "https://www.bbcgoodfood.com/sites/default/files/Collections_British_4.jpg",
   },
+  {
+    tag_id: 9,
+    tag_name: "juice",
+    imageUrl:
+      "https://www.bbcgoodfood.com/sites/default/files/Collections_British_4.jpg",
+  },
+  {
+    tag_id: 9,
+    tag_name: "fast food",
+    imageUrl:
+      "https://www.bbcgoodfood.com/sites/default/files/Collections_British_4.jpg",
+  },
+  {
+    tag_id: 9,
+    tag_name: "noodle",
+    imageUrl:
+      "https://www.bbcgoodfood.com/sites/default/files/Collections_British_4.jpg",
+  },
+  {
+    tag_id: 9,
+    tag_name: "pizza",
+    imageUrl:
+      "https://www.bbcgoodfood.com/sites/default/files/Collections_British_4.jpg",
+  },
 ];
