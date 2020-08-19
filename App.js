@@ -12,6 +12,8 @@ const fetchFonts = () => {
   });
 };
 
+console.disableYellowBox = true;
+
 export default function App() {
   console.log("entry");
   const [fontLoaded, setFontLoaded] = useState(false);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Fragment } from "react";
 import { Text, View, TouchableOpacity } from "react-native";
 import Tags from "react-native-tags";
 import Modal from "react-native-modal";
@@ -20,111 +20,52 @@ const FilterModal = ({
 }) => {
   const isSelected = (type, value) => data[type].includes(value);
   const categories = ALL_TAG.map((tag) => tag.tag_name);
+  const makeTags = (data, type) => {
+    return (
+      <Fragment>
+        <Text style={{ color: "white" }}>{type}</Text>
+        <View
+          style={{
+            flexDirection: "row",
+            justifyContent: "center",
+            marginTop: 10,
+            shadowColor: "#808080",
+            shadowOpacity: 0.1,
+          }}
+        >
+          <Tags
+            initialTags={data}
+            readonly={true}
+            renderTag={({ tag, index }) => (
+              <TouchableOpacity
+                key={`${tag}-${index}`}
+                onPress={() =>
+                  isSelected(type, tag)
+                    ? deSelectTag(type, tag)
+                    : selectTag(type, tag)
+                }
+              >
+                <View
+                  style={[
+                    styles.filterTagContainer,
+                    isSelected(type, tag) && styles.selectedTag,
+                  ]}
+                >
+                  <Text style={styles.tags}>{tag}</Text>
+                </View>
+              </TouchableOpacity>
+            )}
+          />
+        </View>
+      </Fragment>
+    );
+  };
   return (
     <Modal isVisible={modalVisible}>
       <View style={{ flex: 1, marginTop: 90 }}>
-        <Text style={{ color: "white" }}>{CATEGORY}</Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: 10,
-            shadowColor: "#808080",
-            shadowOpacity: 0.1,
-          }}
-        >
-          <Tags
-            initialTags={categories}
-            readonly={true}
-            renderTag={({ tag, index }) => (
-              <TouchableOpacity
-                key={`${tag}-${index}`}
-                onPress={() =>
-                  isSelected(CATEGORY, tag)
-                    ? deSelectTag(CATEGORY, tag)
-                    : selectTag(CATEGORY, tag)
-                }
-              >
-                <View
-                  style={[
-                    styles.filterTagContainer,
-                    isSelected(CATEGORY, tag) && styles.selectedTag,
-                  ]}
-                >
-                  <Text style={styles.tags}>{tag}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-        <Text style={{ color: "white" }}>{PRICE}</Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: 10,
-            shadowColor: "#808080",
-            shadowOpacity: 0.1,
-          }}
-        >
-          <Tags
-            initialTags={Prices}
-            readonly={true}
-            renderTag={({ tag, index }) => (
-              <TouchableOpacity
-                key={`${tag}-${index}`}
-                onPress={() =>
-                  isSelected(PRICE, tag)
-                    ? deSelectTag(PRICE, tag)
-                    : selectTag(PRICE, tag)
-                }
-              >
-                <View
-                  style={[
-                    styles.filterTagContainer,
-                    isSelected(PRICE, tag) && styles.selectedTag,
-                  ]}
-                >
-                  <Text style={styles.tags}>{tag}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
-        <Text style={{ color: "white" }}>{MINIMUM_RATING}</Text>
-        <View
-          style={{
-            flexDirection: "row",
-            justifyContent: "center",
-            marginTop: 10,
-            shadowColor: "#808080",
-            shadowOpacity: 0.1,
-          }}
-        >
-          <Tags
-            initialTags={Ratings}
-            readonly={true}
-            renderTag={({ tag, index }) => (
-              <TouchableOpacity
-                key={`${tag}-${index}`}
-                onPress={() =>
-                  isSelected(MINIMUM_RATING, tag)
-                    ? deSelectTag(MINIMUM_RATING, tag)
-                    : selectTag(MINIMUM_RATING, tag)
-                }
-              >
-                <View
-                  style={[
-                    styles.filterTagContainer,
-                    isSelected(MINIMUM_RATING, tag) && styles.selectedTag,
-                  ]}
-                >
-                  <Text style={styles.tags}>{tag}</Text>
-                </View>
-              </TouchableOpacity>
-            )}
-          />
-        </View>
+        {makeTags(categories, CATEGORY)}
+        {makeTags(Prices, PRICE)}
+        {makeTags(Ratings, MINIMUM_RATING)}
         <TouchableScale
           style={{
             flexDirection: "row",
