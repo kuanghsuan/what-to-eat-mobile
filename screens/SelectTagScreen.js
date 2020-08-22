@@ -1,18 +1,16 @@
-import { StyleSheet, View,  FlatList } from "react-native";
-import React, { useEffect, useState } from "react";
-import ActionButton from "react-native-action-button";
-import TagItem from '../components/TagItem';
-import ALL_TAG from "../data/Tags";
+import { FlatList, StyleSheet, View } from "react-native";
 
+import ALL_TAG from "../data/Tags";
+import ActionButton from "react-native-action-button";
+import React from "react";
+import TagItem from "../components/TagItem";
 
 const SelectTag = (props) => {
-  
   const submitTags = () => {
-    props.navigation.navigate('menu');
-  }
+    props.navigation.navigate("menu");
+  };
 
   const rederGridItem = (itemData) => {
-    
     return (
       <TagItem
         title={itemData.item.tag_name}
@@ -20,7 +18,7 @@ const SelectTag = (props) => {
         onSelect={() => {}}
       />
     );
-}
+  };
   return (
     <View style={styles.screen}>
       <FlatList
@@ -46,7 +44,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
 });
 
 export default SelectTag;

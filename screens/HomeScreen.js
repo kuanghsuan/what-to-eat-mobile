@@ -1,25 +1,19 @@
 import { AntDesign, Feather, Foundation } from "@expo/vector-icons";
-import {
-  Button,
-  Dimensions,
-  ImageBackground,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
 //constants
 import { CATEGORY, MINIMUM_RATING, PRICE } from "../utils/constants";
-import React, { useEffect, useState } from "react";
+import { Dimensions, View } from "react-native";
+import React, { useEffect, useRef, useState } from "react";
 // data
-import { createPreference, fetchRestaurantsData } from "../utils/api_utils";
+import {
+  createPreference as _createPreference,
+  fetchRestaurantsData,
+} from "../utils/api_utils";
 
 // components
 import CardItem from "../components/CardItem";
 import City from "../components/City";
 import FilterModal from "../components/FilterModal";
 import Filters from "../components/Filters";
-import MyIconButton from "../components/IconButton";
 import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
 import Swiper from "react-native-deck-swiper";
 //package
@@ -32,14 +26,39 @@ import styles from "../assets/styles";
 
 const USER_ID = 6;
 
-const HomeScreen = ({ navigation }) => {
-  const [restaurantsData, setRestaurantsData] = useState([]);
+const HomeScreen = (props) => {
+  let data = [];
+  let restaurantId;
+  const { navigation } = props;
+  if (props.route.params) {
+    data = props.route.params.data;
+    restaurantId = props.route.params.restaurantId;
+  }
+
+  const [restaurantsData, setRestaurantsData] = useState(data);
   const [modalVisible, setModalVisible] = useState(false);
   const [filterData, setFilterData] = useState({
     [CATEGORY]: [],
     [PRICE]: [],
     [MINIMUM_RATING]: [],
   });
+  const swiperRef = useRef();
+  let startIndex = data.findIndex(
+    (restaurant) => restaurant.id === restaurantId
+  );
+  startIndex = startIndex !== -1 ? startIndex : 0;
+
+  const createPreference = (userId, restaurantId, type) => {
+    _createPreference(userId, restaurantId, type).then((response) => {
+      fetchRestaurantsData(USER_ID, 1).then((res) => {
+        if (res) {
+          setRestaurantsData(restaurantsData.concat(res.data.next_restaurants));
+        }
+      });
+      return response;
+    });
+  };
+
   const selectTag = (type, value) => {
     const newState = Object.assign({}, filterData);
     if (type === MINIMUM_RATING) {
@@ -60,16 +79,19 @@ const HomeScreen = ({ navigation }) => {
     setFilterData(newState);
   };
   useEffect(() => {
-    fetchRestaurantsData(USER_ID, 5).then((res) => {
-      if (res) {
-        setRestaurantsData(res.data.next_restaurants);
-      }
-    });
+    if (restaurantsData.length === 0) {
+      fetchRestaurantsData(USER_ID, 5).then((res) => {
+        if (res) {
+          setRestaurantsData(res.data.next_restaurants);
+        }
+      });
+    }
   }, [setRestaurantsData]);
 
   const cardHeight = cardItemStyle.containerCardItem.height;
   const cardWidth = cardItemStyle.containerCardItem.width;
   const DIMENSION_WIDTH = Dimensions.get("window").width;
+
   return (
     <View style={styles.bg}>
       <View style={styles.top}>
@@ -78,13 +100,14 @@ const HomeScreen = ({ navigation }) => {
       </View>
       <View>
         <Swiper
-          cardVerticalMargin={0.9}
+          ref={(swiper) => (swiperRef.current = swiper)}
+          cardVerticalMargin={hp(0.9)}
           cardHorizontalMargin={(DIMENSION_WIDTH - cardWidth) / 2.0}
           backgroundColor={WHITE}
           cards={restaurantsData}
+          disableBottomSwipe={true}
           infinite={true}
-          swipeAnimationDuration={10}
-          cardIndex={0}
+          cardIndex={startIndex}
           stackSize={3}
           stackSeparation={0}
           animateOverlayLabelsOpacity
@@ -121,8 +144,8 @@ const HomeScreen = ({ navigation }) => {
                   flexDirection: "column",
                   alignItems: "flex-end",
                   justifyContent: "flex-start",
-                  marginTop: 30,
-                  marginLeft: -30,
+                  marginTop: hp(30),
+                  marginLeft: wp(-30),
                 },
               },
             },
@@ -142,8 +165,8 @@ const HomeScreen = ({ navigation }) => {
                   flexDirection: "column",
                   alignItems: "flex-start",
                   justifyContent: "flex-start",
-                  marginTop: 30,
-                  marginLeft: 30,
+                  marginTop: hp(30),
+                  marginLeft: wp(30),
                 },
               },
             },
@@ -163,20 +186,21 @@ const HomeScreen = ({ navigation }) => {
                   flexDirection: "column",
                   alignItems: "flex-start",
                   justifyContent: "flex-start",
-                  marginTop: 330,
-                  marginLeft: 70,
+                  marginTop: hp(330),
+                  marginLeft: wp(70),
                 },
               },
             },
           }}
-          stackScale={2}
+          stackScale={5}
           renderCard={(restaurant) => {
             return (
               restaurant && (
                 <View style={cardItemStyle.cardContainer}>
                   <CardItem
                     navigation={navigation}
-                    data={restaurant}
+                    data={restaurantsData}
+                    restaurantId={restaurant.id}
                     imageUrl={restaurant.image_url}
                   />
                 </View>
@@ -188,9 +212,9 @@ const HomeScreen = ({ navigation }) => {
           onTapCard={(cardIndex) => {
             console.log(`tapping card ${cardIndex}`);
           }}
-          onSwipedRight={(cardIndex) =>
-            createPreference(USER_ID, restaurantsData[cardIndex].id, "LIKE")
-          }
+          onSwipedRight={(cardIndex) => {
+            createPreference(USER_ID, restaurantsData[cardIndex].id, "LIKE");
+          }}
           onSwipedLeft={(cardIndex) =>
             createPreference(USER_ID, restaurantsData[cardIndex].id, "DISLIKE")
           }
@@ -200,14 +224,23 @@ const HomeScreen = ({ navigation }) => {
         ></Swiper>
       </View>
       <View style={buttonStyles.buttonContainer}>
-        <TouchableScale activeScale={0.9}>
-          <AntDesign name="closecircleo" size={50} color="#20B2AA" />
+        <TouchableScale
+          activeScale={0.9}
+          onPressIn={() => (swiperRef ? swiperRef.current.swipeLeft() : null)}
+        >
+          <AntDesign name="closecircleo" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
-        <TouchableScale activeScale={0.9}>
-          <Feather name="meh" size={50} color="#20B2AA" />
+        <TouchableScale
+          activeScale={0.9}
+          onPressIn={() => (swiperRef ? swiperRef.current.swipeTop() : null)}
+        >
+          <Feather name="meh" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
-        <TouchableScale activeScale={0.9}>
-          <Foundation name="heart" size={50} color="#20B2AA" />
+        <TouchableScale
+          activeScale={0.9}
+          onPressIn={() => (swiperRef ? swiperRef.current.swipeRight() : null)}
+        >
+          <Foundation name="heart" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
       </View>
       <FilterModal

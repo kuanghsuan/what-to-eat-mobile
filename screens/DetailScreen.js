@@ -5,98 +5,104 @@ import {
   Foundation,
   MaterialCommunityIcons,
 } from "@expo/vector-icons";
-import { Dimensions, Image, StyleSheet, Text, View } from "react-native";
-import {
-  FlatList,
-  ScrollView,
-  TouchableOpacity,
-} from "react-native-gesture-handler";
+import { Dimensions, StyleSheet, Text, View } from "react-native";
+import { hp, wp } from "../utils/sizing_utils";
 
-// style
 import CentralStyle from "../assets/styles/index";
-// fake data
 import { LinearGradient } from "expo-linear-gradient";
 import MapView from "react-native-maps";
 import React from "react";
+import { ScrollView } from "react-native-gesture-handler";
+import { SharedElement } from "react-navigation-shared-element";
 import { SliderBox } from "react-native-image-slider-box";
 import Tags from "react-native-tags";
 import TouchableScale from "react-native-touchable-scale";
 
-// package
-const { SharedElement } = require("react-navigation-shared-element");
-// import styles from "../assets/styles";
-
 const DetailScreen = (props) => {
-  const { width, height } = Dimensions.get("window");
-  const { data } = props.route.params;
-  const description = data.categories.map((category) => category.title);
+  const { height } = Dimensions.get("window");
+  const { navigation } = props;
+  const { data, restaurantId } = props.route.params;
+  const restaurant = data.find((restaurant) => restaurant.id === restaurantId);
+  const description = restaurant.categories.map((category) => category.title);
   return (
     <View style={CentralStyle.bg}>
       <ScrollView>
         <View>
-          <SharedElement id={`item.${data.id}.image`}>
+          <SharedElement id={`item.${restaurant.id}.image`}>
             <SliderBox
-              images={data.photos}
+              images={restaurant.photos}
               resizeMode="cover"
               dotColor="#FFEE58"
               ImageComponentStyle={{
                 width: "100%",
-                height: height - 484,
-                borderBottomLeftRadius: 20,
-                borderBottomRightRadius: 20,
+                height: height - hp(484),
+                borderBottomLeftRadius: hp(20),
+                borderBottomRightRadius: hp(20),
               }}
+              onCurrentImagePressed={() =>
+                navigation.navigate("HomeScreen", {
+                  data: data,
+                  restaurantId: restaurantId,
+                })
+              }
             />
           </SharedElement>
 
           <View style={styles.timerContainer}>
-            <MaterialCommunityIcons name="clock-fast" size={24} color="white" />
+            <MaterialCommunityIcons
+              name="clock-fast"
+              size={hp(24)}
+              color="white"
+            />
             <Text
               style={{
                 color: "#FFFFFF",
                 fontWeight: "bold",
                 fontSize: 18,
-                left: 3,
+                left: wp(3),
               }}
             >
               20min
             </Text>
           </View>
           <View style={styles.rating}>
-            <Text style={{ color: "white", fontSize: 20, fontWeight: "bold" }}>
-              {parseFloat(data.rating).toFixed(1)}
+            <Text
+              style={{ color: "white", fontSize: hp(20), fontWeight: "bold" }}
+            >
+              {parseFloat(restaurant.rating).toFixed(1)}
             </Text>
           </View>
         </View>
 
-        <View style={{ padding: 16 }}>
-          <SharedElement id={`item.${data.id}.name`}>
+        <View style={{ padding: hp(16) }}>
+          <SharedElement id={`item.${restaurant.id}.name`}>
             <View
               style={{
                 flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
-                height: 30,
+                height: hp(30),
               }}
             >
-              <Text style={styles.resTitle}>{data.name}</Text>
+              <Text style={styles.resTitle}>{restaurant.name}</Text>
               <View
                 style={{
                   flexDirection: "row",
                   alignItems: "center",
                   justifyContent: "left",
-                  paddingTop: 5,
+                  paddingTop: hp(5),
                 }}
               >
-                <Feather name="dollar-sign" size={13} color="#20B2AA" />
-                <Feather name="dollar-sign" size={13} color="#20B2AA" />
+                <Feather name="dollar-sign" size={hp(13)} color="#20B2AA" />
+                <Feather name="dollar-sign" size={hp(13)} color="#20B2AA" />
               </View>
             </View>
           </SharedElement>
 
-          <SharedElement id={`item.${data.id}.description`}>
+          <SharedElement id={`item.${restaurant.id}.description`}>
             <View
               style={{
-                marginTop: 8,
+                marginTop: hp(8),
                 shadowColor: "#808080",
                 shadowOpacity: 0.1,
               }}
@@ -115,30 +121,34 @@ const DetailScreen = (props) => {
           style={{
             flexDirection: "row",
             alignItems: "center",
-            paddingHorizontal: 35,
-            paddingVertical: 10,
+            paddingHorizontal: wp(35),
+            paddingVertical: hp(10),
             justifyContent: "space-around",
           }}
         >
           <View style={{ alignItems: "center", justifyContent: "center" }}>
             <TouchableScale activeScale={0.9} style={styles.buttonBackground}>
-              <Feather name="map-pin" size={30} color="#fff" />
+              <Feather name="map-pin" size={hp(30)} color="#fff" />
             </TouchableScale>
-            <Text style={{ paddingTop: 10, fontWeight: "bold", color: "gray" }}>
+            <Text
+              style={{ paddingTop: hp(10), fontWeight: "bold", color: "gray" }}
+            >
               View Map
             </Text>
           </View>
           <View style={{ alignItems: "center", justifyContent: "center" }}>
             <TouchableScale activeScale={0.9} style={styles.buttonBackground}>
-              <Feather name="phone-call" size={30} color="#fff" />
+              <Feather name="phone-call" size={hp(30)} color="#fff" />
             </TouchableScale>
-            <Text style={{ paddingTop: 10, fontWeight: "bold", color: "gray" }}>
+            <Text
+              style={{ paddingTop: hp(10), fontWeight: "bold", color: "gray" }}
+            >
               Call
             </Text>
           </View>
           <View style={{ alignItems: "center", justifyContent: "center" }}>
             <TouchableScale activeScale={0.9} style={styles.buttonBackground}>
-              <FontAwesome name="yelp" size={27} color="#fff" />
+              <FontAwesome name="yelp" size={hp(27)} color="#fff" />
             </TouchableScale>
             <Text style={{ paddingTop: 10, fontWeight: "bold", color: "gray" }}>
               Yelp
@@ -147,7 +157,7 @@ const DetailScreen = (props) => {
         </View>
 
         <View style={styles.mapBox}>
-          <Text style={{ height: 120, width: 200 }}>
+          <Text style={{ height: hp(120), width: wp(200) }}>
             This is the restranuts address, see here! i am right here.
           </Text>
           <MapView
@@ -170,13 +180,13 @@ const DetailScreen = (props) => {
           style={styles.linearGradient}
         />
         <TouchableScale activeScale={0.9}>
-          <AntDesign name="closecircleo" size={50} color="#20B2AA" />
+          <AntDesign name="closecircleo" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
         <TouchableScale activeScale={0.9}>
-          <Feather name="meh" size={50} color="#20B2AA" />
+          <Feather name="meh" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
         <TouchableScale activeScale={0.9}>
-          <Foundation name="heart" size={50} color="#20B2AA" />
+          <Foundation name="heart" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
       </View>
     </View>
@@ -187,11 +197,11 @@ const styles = StyleSheet.create({
   resTitle: {
     fontFamily: "Roboto-Medium",
     color: "#000000",
-    fontSize: 24,
+    fontSize: hp(24),
   },
   resDescription: {
     color: "#757E90",
-    fontSize: 16,
+    fontSize: hp(16),
     paddingTop: 10, // this is for temp position on the description tags
   },
   tagContainer: {
@@ -199,7 +209,7 @@ const styles = StyleSheet.create({
   },
   tags: {
     color: "#FFFFFF",
-    fontSize: 12,
+    fontSize: hp(12),
     fontWeight: "bold",
   },
   buttonContainer: {
@@ -207,13 +217,13 @@ const styles = StyleSheet.create({
     position: "absolute",
     backgroundColor: "transparent",
     justifyContent: "space-around",
-    marginTop: 771,
-    width: 414,
-    height: 125,
+    marginTop: hp(771),
+    width: wp(414),
+    height: hp(125),
   },
   linearGradient: {
     position: "absolute",
-    height: 135,
+    height: hp(135),
     left: 0,
     right: 0,
     bottom: 0,
@@ -222,38 +232,38 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0,0,0,0.2)",
     shadowColor: "#808080",
     shadowOpacity: 0.3,
-    shadowRadius: 5,
-    shadowOffset: { height: 1, width: 0 },
+    shadowRadius: hp(5),
+    shadowOffset: { height: hp(1), width: 0 },
     alignItems: "center",
     justifyContent: "center",
-    width: 50,
-    height: 50,
+    width: wp(50),
+    height: hp(50),
     backgroundColor: "#20B2AA",
-    borderRadius: 50,
+    borderRadius: hp(50),
   },
   timerContainer: {
     position: "absolute",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    height: 35,
-    width: 100,
-    borderRadius: 10,
+    height: hp(35),
+    width: wp(100),
+    borderRadius: hp(10),
     backgroundColor: "#000000",
     opacity: 0.5,
-    top: 365,
-    right: 15,
+    top: hp(365),
+    right: wp(15),
   },
   rating: {
     position: "absolute",
-    height: 40,
-    width: 60,
-    borderRadius: 10,
+    height: hp(40),
+    width: wp(60),
+    borderRadius: hp(10),
     backgroundColor: "#ffa500",
     alignItems: "center",
     justifyContent: "center",
-    top: 360,
-    left: 15,
+    top: hp(360),
+    left: wp(15),
   },
   mapBox: {
     flexDirection: "row",
@@ -261,8 +271,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   mapView: {
-    width: 200,
-    height: 120,
+    width: wp(200),
+    height: hp(120),
   },
 });
 export default DetailScreen;

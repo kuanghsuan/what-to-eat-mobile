@@ -18,11 +18,14 @@ import cardItemStyle from "../assets/styles/CardItemStyle";
 import styles from "../assets/styles";
 
 const CardItem = (props) => {
-  const { navigation, data, imageUrl } = props;
-  const description = data.categories.map((category) => category.title + " ");
+  const { navigation, data, imageUrl, restaurantId } = props;
+  let restaurant = data.find((restaurant) => restaurant.id === restaurantId);
+  const description = restaurant.categories.map(
+    (category) => category.title + " "
+  );
   return (
     <View style={cardItemStyle.containerCardItem}>
-      <SharedElement id={`item.${data.id}.image`}>
+      <SharedElement id={`item.${restaurant.id}.image`}>
         <Image
           resizeMode="cover"
           source={{ uri: imageUrl }}
@@ -36,15 +39,23 @@ const CardItem = (props) => {
           tension={50}
           friction={7}
           useNativeDriver={true}
-          onPress={() => navigation.navigate("DetailScreen", { data: data })}
+          onPress={() => {
+            console.log("navigation");
+            navigation.navigate("DetailScreen", {
+              data: data,
+              restaurantId: restaurantId,
+            });
+          }}
         >
-          {data.name && (
-            <SharedElement id={`item.${data.id}.name`}>
-              <Text style={cardItemStyle.nameTextCardItem}>{data.name}</Text>
+          {restaurant.name && (
+            <SharedElement id={`item.${restaurant.id}.name`}>
+              <Text style={cardItemStyle.nameTextCardItem}>
+                {restaurant.name}
+              </Text>
             </SharedElement>
           )}
           {description && (
-            <SharedElement id={`item.${data.id}.description`}>
+            <SharedElement id={`item.${restaurant.id}.description`}>
               <View style={{ marginLeft: 20 }}>
                 <Tags
                   initialTags={description.slice(0, 2)}

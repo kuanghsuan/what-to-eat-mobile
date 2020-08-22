@@ -1,5 +1,6 @@
-import defaultAxios from "axios";
 import * as AxiosLogger from "axios-logger";
+
+import defaultAxios from "axios";
 
 const SESSION_URL = "/session";
 const PREFERENCE_URL = "/preferences/";
@@ -13,23 +14,23 @@ axios.interceptors.request.use(
   AxiosLogger.errorLogger
 );
 axios.interceptors.response.use(
-  AxiosLogger.responseLogger,
+  (response) => AxiosLogger.responseLogger(response, { data: false }),
   AxiosLogger.errorLogger
 );
 
-export const fetchRestaurantsData = (user_id, page_size) =>
+export const fetchRestaurantsData = (userId, pageSize) =>
   axios
     .get(SESSION_URL, {
-      params: { user_id: user_id, page_size: page_size },
+      params: { user_id: userId, page_size: pageSize },
     })
     .catch(function (error) {
       console.log(error);
     });
 
-export const createPreference = (user_id, restaurant_id, type) => {
+export const createPreference = (userId, restaurantId, type) => {
   const params = new URLSearchParams({
-    user: user_id,
-    restaurant_id: restaurant_id,
+    user: userId,
+    restaurant_id: restaurantId,
     type: type,
   });
   return axios.post(PREFERENCE_URL, params).catch(function (error) {

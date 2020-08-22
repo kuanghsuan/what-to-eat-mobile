@@ -1,8 +1,10 @@
-import React, { useState } from "react";
-import { YellowBox } from "react-native";
-import { AppLoading } from "expo";
 import * as Font from "expo-font";
+
+import React, { useState } from "react";
+
+import { AppLoading } from "expo";
 import MainNavigator from "./screens/MainNavigation";
+import { YellowBox } from "react-native";
 
 const fetchFonts = () => {
   return Font.loadAsync({

@@ -145,11 +145,11 @@ export default StyleSheet.create({
     backgroundColor: WHITE,
   },
   top: {
-    paddingTop: 50,
-    marginHorizontal: 10,
+    paddingTop: hp(50),
+    marginHorizontal: wp(10),
     flexDirection: "row",
     justifyContent: "space-between",
-    alignItems: "center",
+    alignItems: "flex-end",
   },
   //   title: { paddingBottom: 10, fontSize: 22, color: DARK_GRAY },
   //   icon: {
@@ -239,8 +239,8 @@ export default StyleSheet.create({
   },
 
   //Tags
-  tagContainer:{
-    backgroundColor: "#20B2AA"
+  tagContainer: {
+    backgroundColor: "#20B2AA",
   },
   tags: {
     color: "#FFFFFF",
@@ -254,9 +254,9 @@ export default StyleSheet.create({
     paddingLeft: 12,
     paddingRight: 12,
     height: 32,
-    margin: 4
+    margin: 4,
   },
   selectedTag: {
-    backgroundColor: "#20B2AA"
-  }
+    backgroundColor: "#20B2AA",
+  },
 });

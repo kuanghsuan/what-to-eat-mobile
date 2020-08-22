@@ -19,26 +19,22 @@ const FLASH_ACTIONS = "#5028D7";
 const MEDIUM_FONT = "Roboto-Medium";
 const LIGHT_FONT = "Roboto-Light";
 
-const DIMENSION_WIDTH = Dimensions.get("window").width;
-const DIMENSION_HEIGHT = Dimensions.get("window").height;
-
 export default StyleSheet.create({
   // COMPONENT - CARD ITEM
   containerCardItem: {
     backgroundColor: WHITE,
     overflow: "hidden",
     borderRadius: 20,
-    height: 622,
-    width: 366,
+    height: hp(622),
+    width: wp(366),
   },
   overlayLabels: {
-    fontSize: 45,
+    fontSize: hp(45),
     fontWeight: "bold",
     borderRadius: 10,
-    padding: 10,
+    padding: hp(10),
     overflow: "hidden",
   },
-
   cardContainer: {
     shadowOpacity: 0.5,
     shadowRadius: 8,
@@ -46,68 +42,54 @@ export default StyleSheet.create({
     shadowOffset: { height: 0, width: 0 },
   },
 
-  //   card: {
-  //     flex: 1,
-  //     borderRadius: 4,
-  //     borderWidth: 2,
-  //     borderColor: "#E8E8E8",
-  //     justifyContent: "center",
-  //     backgroundColor: "white",
-  //   },
   nameCardItem: {
     position: "absolute",
     flex: 1,
     flexDirection: "column",
     justifyContent: "center",
-    height: 104,
-    marginTop: 486,
-    marginBottom: 32,
-    marginLeft: 48,
+    height: hp(104),
+    marginTop: hp(486),
+    marginBottom: hp(32),
+    marginLeft: wp(48),
     backgroundColor: "white",
-    borderTopLeftRadius:20,
-    borderBottomLeftRadius:20,
+    borderTopLeftRadius: 20,
+    borderBottomLeftRadius: 20,
     opacity: 0.8,
-    width: 320,
+    width: wp(320),
     shadowColor: BLACK,
     shadowRadius: 15,
   },
   nameTextCardItem: {
     fontFamily: MEDIUM_FONT,
     color: BLACK,
-    fontSize: 20,
-    marginLeft: 24,
-    marginBottom: 8,
-    width: 290,
+    fontSize: wp(20),
+    marginLeft: wp(24),
+    marginBottom: hp(8),
+    width: wp(290),
   },
   descriptionCardItem: {
-    marginLeft: 24,
+    marginLeft: wp(24),
     color: GRAY,
-    fontSize: 16,
+    fontSize: wp(16),
   },
   overlayLabel: {
     justifyContent: "center",
     alignItems: "center",
-    padding: 7,
-    borderWidth: 6,
+    padding: hp(7),
+    borderWidth: wp(6),
     borderRadius: 10,
   },
   overlayLabelText: {
-    fontSize: 50,
+    fontSize: hp(50),
     fontFamily: "Avenir",
     textAlign: "center",
   },
-
-  //   actionsCardItem: {
-  //     flexDirection: "row",
-  //     alignItems: "center",
-  //     paddingVertical: 30,
-  //   },
   button: {
-    width: 60,
-    height: 60,
+    width: wp(60),
+    height: hp(60),
     borderRadius: 30,
     backgroundColor: WHITE,
-    marginHorizontal: 7,
+    marginHorizontal: hp(7),
     alignItems: "center",
     justifyContent: "center",
     shadowOpacity: 0.15,
@@ -116,8 +98,8 @@ export default StyleSheet.create({
     shadowOffset: { height: 10, width: 0 },
   },
   miniButton: {
-    width: 40,
-    height: 40,
+    width: wp(40),
+    height: hp(40),
     borderRadius: 30,
     backgroundColor: WHITE,
     marginHorizontal: 7,
@@ -126,19 +108,19 @@ export default StyleSheet.create({
     shadowOpacity: 0.15,
     shadowRadius: 20,
     shadowColor: DARK_GRAY,
-    shadowOffset: { height: 10, width: 0 },
+    shadowOffset: { height: hp(10), width: 0 },
   },
   star: {
     fontFamily: MEDIUM_FONT,
     color: STAR_ACTIONS,
   },
   like: {
-    fontSize: 25,
+    fontSize: hp(25),
     fontFamily: MEDIUM_FONT,
     color: LIKE_ACTIONS,
   },
   dislike: {
-    fontSize: 25,
+    fontSize: hp(25),
     fontFamily: MEDIUM_FONT,
     color: DISLIKE_ACTIONS,
   },

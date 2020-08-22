@@ -2,21 +2,21 @@ import React from "react";
 import { TouchableOpacity, Text, View, FlatList } from "react-native";
 
 const Bubble = (props) => {
-   const moviesList = [
-     { title: "1" },
-     { title: "2" },
-     { title: "3" },
-     { title: "4" },
-     { title: "5" },
-     { title: "6" },
-     { title: "7" },
-     { title: "8" },
-     { title: "9" },
-     { title: "10" },
-   ];
+  const moviesList = [
+    { title: "1" },
+    { title: "2" },
+    { title: "3" },
+    { title: "4" },
+    { title: "5" },
+    { title: "6" },
+    { title: "7" },
+    { title: "8" },
+    { title: "9" },
+    { title: "10" },
+  ];
   renderRowItem = (itemData) => {
     var RandomNumber = Math.floor(Math.random() * 50) + 70;
-    var radius = ( RandomNumber + itemData.item.title.length ) / 2;
+    var radius = (RandomNumber + itemData.item.title.length) / 2;
     return (
       <View>
         <TouchableOpacity onPress={() => {}}>

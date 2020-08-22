@@ -1,14 +1,8 @@
-import React from "react";
-import { View, ActionButton } from "react-native";
 import { AnimatedCircles } from "../components/AnimatedCircles/AnimatedCircles.component";
+import React from "react";
 
 const Circle = () => {
-  return (
-   
-      <AnimatedCircles />
-      
-
-  );
+  return <AnimatedCircles />;
 };
 
 export default Circle;
