@@ -25,8 +25,6 @@ const config = {
 };
 
 const MainNavigator = ({ navigation }) => {
-  console.log("animate");
-
   return (
     <NavigationContainer>
       <Stack.Navigator

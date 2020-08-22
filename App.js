@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { YellowBox } from "react-native";
 import { AppLoading } from "expo";
 import * as Font from "expo-font";
 import MainNavigator from "./screens/MainNavigation";
@@ -12,7 +13,11 @@ const fetchFonts = () => {
   });
 };
 
-console.disableYellowBox = true;
+YellowBox.ignoreWarnings([
+  "Animated: `useNativeDriver` was not specified.",
+  "Animated.event now requires a second argument for options",
+  "Warning: componentWillReceiveProps has been renamed",
+]);
 
 export default function App() {
   console.log("entry");

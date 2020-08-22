@@ -186,7 +186,7 @@ const HomeScreen = ({ navigation }) => {
           //function to be called when tapping a card. it receives the tapped card index
           //function : next photo
           onTapCard={(cardIndex) => {
-            console.log(cardIndex);
+            console.log(`tapping card ${cardIndex}`);
           }}
           onSwipedRight={(cardIndex) =>
             createPreference(USER_ID, restaurantsData[cardIndex].id, "LIKE")

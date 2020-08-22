@@ -1,8 +1,21 @@
-import axios from "axios";
+import defaultAxios from "axios";
+import * as AxiosLogger from "axios-logger";
 
-const ORIGIN = "https://what-to-eat-ml-backend.herokuapp.com/api";
-const SESSION_URL = `${ORIGIN}/session`;
-const PREFERENCE_URL = `${ORIGIN}/preferences/`;
+const SESSION_URL = "/session";
+const PREFERENCE_URL = "/preferences/";
+
+const axios = defaultAxios.create({
+  baseURL: "https://what-to-eat-ml-backend.herokuapp.com/api",
+});
+
+axios.interceptors.request.use(
+  AxiosLogger.requestLogger,
+  AxiosLogger.errorLogger
+);
+axios.interceptors.response.use(
+  AxiosLogger.responseLogger,
+  AxiosLogger.errorLogger
+);
 
 export const fetchRestaurantsData = (user_id, page_size) =>
   axios
@@ -14,10 +27,11 @@ export const fetchRestaurantsData = (user_id, page_size) =>
     });
 
 export const createPreference = (user_id, restaurant_id, type) => {
-  const params = new URLSearchParams();
-  params.append("user", user_id);
-  params.append("restaurant_id", restaurant_id);
-  params.append("type", type);
+  const params = new URLSearchParams({
+    user: user_id,
+    restaurant_id: restaurant_id,
+    type: type,
+  });
   return axios.post(PREFERENCE_URL, params).catch(function (error) {
     console.log(error);
   });
