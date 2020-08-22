@@ -197,12 +197,23 @@ const HomeScreen = (props) => {
             return (
               restaurant && (
                 <View style={cardItemStyle.cardContainer}>
-                  <CardItem
-                    navigation={navigation}
-                    data={restaurantsData}
-                    restaurantId={restaurant.id}
-                    imageUrl={restaurant.image_url}
-                  />
+                  <TouchableScale
+                    activeScale={0.9}
+                    tension={50}
+                    friction={7}
+                    useNativeDriver={true}
+                    onPress={() => {
+                      navigation.navigate("DetailScreen", {
+                        data: restaurantsData,
+                        restaurantId: restaurant.id,
+                      });
+                    }}
+                  >
+                    <CardItem
+                      restaurant={restaurant}
+                      imageUrl={restaurant.image_url}
+                    />
+                  </TouchableScale>
                 </View>
               )
             );

@@ -18,8 +18,7 @@ import cardItemStyle from "../assets/styles/CardItemStyle";
 import styles from "../assets/styles";
 
 const CardItem = (props) => {
-  const { navigation, data, imageUrl, restaurantId } = props;
-  let restaurant = data.find((restaurant) => restaurant.id === restaurantId);
+  const { restaurant, imageUrl } = props;
   const description = restaurant.categories.map(
     (category) => category.title + " "
   );
@@ -34,39 +33,25 @@ const CardItem = (props) => {
       </SharedElement>
 
       <View style={cardItemStyle.nameCardItem}>
-        <TouchableScale
-          activeScale={0.9}
-          tension={50}
-          friction={7}
-          useNativeDriver={true}
-          onPress={() => {
-            console.log("navigation");
-            navigation.navigate("DetailScreen", {
-              data: data,
-              restaurantId: restaurantId,
-            });
-          }}
-        >
-          {restaurant.name && (
-            <SharedElement id={`item.${restaurant.id}.name`}>
-              <Text style={cardItemStyle.nameTextCardItem}>
-                {restaurant.name}
-              </Text>
-            </SharedElement>
-          )}
-          {description && (
-            <SharedElement id={`item.${restaurant.id}.description`}>
-              <View style={{ marginLeft: 20 }}>
-                <Tags
-                  initialTags={description.slice(0, 2)}
-                  readonly={true}
-                  tagContainerStyle={myStyles.tags}
-                  tagTextStyle={myStyles.tags}
-                />
-              </View>
-            </SharedElement>
-          )}
-        </TouchableScale>
+        {restaurant.name && (
+          <SharedElement id={`item.${restaurant.id}.name`}>
+            <Text style={cardItemStyle.nameTextCardItem}>
+              {restaurant.name}
+            </Text>
+          </SharedElement>
+        )}
+        {description && (
+          <SharedElement id={`item.${restaurant.id}.description`}>
+            <View style={{ marginLeft: 20 }}>
+              <Tags
+                initialTags={description.slice(0, 2)}
+                readonly={true}
+                tagContainerStyle={myStyles.tags}
+                tagTextStyle={myStyles.tags}
+              />
+            </View>
+          </SharedElement>
+        )}
       </View>
     </View>
   );
