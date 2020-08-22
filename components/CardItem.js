@@ -20,7 +20,6 @@ import styles from "../assets/styles";
 const CardItem = (props) => {
   const { navigation, data, imageUrl } = props;
   const description = data.categories.map((category) => category.title + " ");
-  console.log(navigation);
   return (
     <View style={cardItemStyle.containerCardItem}>
       <SharedElement id={`item.${data.id}.image`}>
@@ -36,7 +35,7 @@ const CardItem = (props) => {
           activeScale={0.9}
           tension={50}
           friction={7}
-          useNativeDriver
+          useNativeDriver={true}
           onPress={() => navigation.navigate("DetailScreen", { data: data })}
         >
           {data.name && (

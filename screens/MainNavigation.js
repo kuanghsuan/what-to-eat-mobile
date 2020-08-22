@@ -6,13 +6,12 @@ import { StyleSheet, Text, View } from "react-native";
 import DetailScreen from "../screens/DetailScreen";
 //Screens
 import HomeScreen from "../screens/HomeScreen";
-import SelectScreen from '../screens/Circle';
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
+import SelectScreen from "../screens/Circle";
 //Package
 import { createSharedElementStackNavigator } from "react-navigation-shared-element";
 import { createStackNavigator } from "react-navigation-stack";
-
 
 const Stack = createSharedElementStackNavigator();
 

@@ -5,31 +5,32 @@ import {
   ImageBackground,
   StyleSheet,
   Text,
-  View,
   TouchableOpacity,
+  View,
 } from "react-native";
+//constants
+import { CATEGORY, MINIMUM_RATING, PRICE } from "../utils/constants";
 import React, { useEffect, useState } from "react";
+// data
+import { createPreference, fetchRestaurantsData } from "../utils/api_utils";
 
 // components
 import CardItem from "../components/CardItem";
 import City from "../components/City";
+import FilterModal from "../components/FilterModal";
 import Filters from "../components/Filters";
 import MyIconButton from "../components/IconButton";
 import OverlayLabel from "../components/OverlayLabels"; // nope and yes!
 import Swiper from "react-native-deck-swiper";
-import FilterModal from "../components/FilterModal";
 //package
 import TouchableScale from "react-native-touchable-scale";
 // styles
 import { WHITE } from "../assets/styles/index";
 import buttonStyles from "../assets/styles/ButtonStyle";
 import cardItemStyle from "../assets/styles/CardItemStyle";
-// data
-import { fetchRestaurantsData } from "../utils/api_utils";
 import styles from "../assets/styles";
 
-//constants
-import { PRICE, MINIMUM_RATING, CATEGORY } from "../utils/constants";
+const USER_ID = 6;
 
 const HomeScreen = ({ navigation }) => {
   const [restaurantsData, setRestaurantsData] = useState([]);
@@ -59,7 +60,7 @@ const HomeScreen = ({ navigation }) => {
     setFilterData(newState);
   };
   useEffect(() => {
-    fetchRestaurantsData(6, 5).then((res) => {
+    fetchRestaurantsData(USER_ID, 5).then((res) => {
       if (res) {
         setRestaurantsData(res.data.next_restaurants);
       }
@@ -187,6 +188,15 @@ const HomeScreen = ({ navigation }) => {
           onTapCard={(cardIndex) => {
             console.log(cardIndex);
           }}
+          onSwipedRight={(cardIndex) =>
+            createPreference(USER_ID, restaurantsData[cardIndex].id, "LIKE")
+          }
+          onSwipedLeft={(cardIndex) =>
+            createPreference(USER_ID, restaurantsData[cardIndex].id, "DISLIKE")
+          }
+          onSwipedTop={(cardIndex) =>
+            createPreference(USER_ID, restaurantsData[cardIndex].id, "NEUTRAL")
+          }
         ></Swiper>
       </View>
       <View style={buttonStyles.buttonContainer}>
