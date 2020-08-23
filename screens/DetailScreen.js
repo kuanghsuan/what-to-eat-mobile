@@ -24,6 +24,13 @@ const DetailScreen = (props) => {
   const { data, restaurantId } = props.route.params;
   const restaurant = data.find((restaurant) => restaurant.id === restaurantId);
   const description = restaurant.categories.map((category) => category.title);
+
+  const createPreference = (actionType) =>
+    navigation.navigate("HomeScreen", {
+      restaurantId: restaurantId,
+      actionType: actionType,
+    });
+
   return (
     <View style={CentralStyle.bg}>
       <ScrollView>
@@ -39,12 +46,7 @@ const DetailScreen = (props) => {
                 borderBottomLeftRadius: hp(20),
                 borderBottomRightRadius: hp(20),
               }}
-              onCurrentImagePressed={() =>
-                navigation.navigate("HomeScreen", {
-                  data: data,
-                  restaurantId: restaurantId,
-                })
-              }
+              onCurrentImagePressed={() => navigation.navigate("HomeScreen")}
             />
           </SharedElement>
 
@@ -179,13 +181,22 @@ const DetailScreen = (props) => {
           colors={["transparent", "rgba(0,0,0,0.8)"]}
           style={styles.linearGradient}
         />
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale
+          activeScale={0.9}
+          onPressIn={() => createPreference("DISLIKE")}
+        >
           <AntDesign name="closecircleo" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale
+          activeScale={0.9}
+          onPressIn={() => createPreference("NEUTRAL")}
+        >
           <Feather name="meh" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
-        <TouchableScale activeScale={0.9}>
+        <TouchableScale
+          activeScale={0.9}
+          onPressIn={() => createPreference("LIKE")}
+        >
           <Foundation name="heart" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
       </View>

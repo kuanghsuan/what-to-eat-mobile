@@ -28,14 +28,10 @@ const USER_ID = 6;
 
 const HomeScreen = (props) => {
   let data = [];
-  let restaurantId;
+  const restaurantId = useRef(null);
   const { navigation } = props;
-  if (props.route.params) {
-    data = props.route.params.data;
-    restaurantId = props.route.params.restaurantId;
-  }
 
-  const [restaurantsData, setRestaurantsData] = useState(data);
+  const [restaurantsData, setRestaurantsData] = useState([]);
   const [modalVisible, setModalVisible] = useState(false);
   const [filterData, setFilterData] = useState({
     [CATEGORY]: [],
@@ -43,12 +39,8 @@ const HomeScreen = (props) => {
     [MINIMUM_RATING]: [],
   });
   const swiperRef = useRef();
-  let startIndex = data.findIndex(
-    (restaurant) => restaurant.id === restaurantId
-  );
-  startIndex = startIndex !== -1 ? startIndex : 0;
 
-  const createPreference = (userId, restaurantId, type) => {
+  const createPreference = (userId, restaurantId, type) =>
     _createPreference(userId, restaurantId, type).then((response) => {
       fetchRestaurantsData(USER_ID, 1).then((res) => {
         if (res) {
@@ -57,7 +49,6 @@ const HomeScreen = (props) => {
       });
       return response;
     });
-  };
 
   const selectTag = (type, value) => {
     const newState = Object.assign({}, filterData);
@@ -68,6 +59,7 @@ const HomeScreen = (props) => {
     }
     setFilterData(newState);
   };
+
   const deSelectTag = (type, value) => {
     const newState = Object.assign({}, filterData);
     if (type === MINIMUM_RATING) {
@@ -78,6 +70,7 @@ const HomeScreen = (props) => {
     }
     setFilterData(newState);
   };
+
   useEffect(() => {
     if (restaurantsData.length === 0) {
       fetchRestaurantsData(USER_ID, 5).then((res) => {
@@ -87,6 +80,28 @@ const HomeScreen = (props) => {
       });
     }
   }, [setRestaurantsData]);
+
+  useEffect(() => {
+    if (props.route.params) {
+      if (restaurantId.current !== props.route.params.restaurantId) {
+        restaurantId.current = props.route.params.restaurantId;
+        const actionType = props.route.params.actionType;
+        if (actionType) {
+          switch (actionType) {
+            case "DISLIKE":
+              swiperRef.current.swipeLeft();
+              break;
+            case "NEUTRAL":
+              swiperRef.current.swipeTop();
+              break;
+            case "LIKE":
+              swiperRef.current.swipeRight();
+              break;
+          }
+        }
+      }
+    }
+  });
 
   const cardHeight = cardItemStyle.containerCardItem.height;
   const cardWidth = cardItemStyle.containerCardItem.width;
@@ -107,7 +122,7 @@ const HomeScreen = (props) => {
           cards={restaurantsData}
           disableBottomSwipe={true}
           infinite={true}
-          cardIndex={startIndex}
+          cardIndex={0}
           stackSize={3}
           stackSeparation={0}
           animateOverlayLabelsOpacity
