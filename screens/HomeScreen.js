@@ -73,7 +73,7 @@ const HomeScreen = (props) => {
 
   useEffect(() => {
     if (restaurantsData.length === 0) {
-      fetchRestaurantsData(USER_ID, 5).then((res) => {
+      fetchRestaurantsData(USER_ID, 2).then((res) => {
         if (res) {
           setRestaurantsData(res.data.next_restaurants);
         }
