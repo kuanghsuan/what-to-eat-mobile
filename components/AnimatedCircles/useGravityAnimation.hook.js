@@ -29,7 +29,7 @@ const useSetup = (dimensions) => {
     const diagonalHalf = diagonal / 2;
     const circles = [];
 
-    const angle = (0.25 * Math.PI) / numCircles;
+    const angle = (2 * Math.PI) / numCircles;
     for (let i = 0; i < numCircles; i++) {
       const randomOffsetAngle = random(-angle , angle );
       const randomOffsetDistance = random(0, circleDiameter);
@@ -42,7 +42,7 @@ const useSetup = (dimensions) => {
       circles.push({
         x: new Value(x),
         y: new Value(y),
-        title: TAGS[i].tag_name,
+        title: TAGS[i].imageUrl,
       });
     }
     return circles;
@@ -61,8 +61,8 @@ const useDraw = (circles) => {
     for (let i = 0; i < circles.length; i++) {
       const circle = circles[i];
 
-      nativeCode.push(set(circle.x, add(circle.x, multiply(circle.x, -0.01))));
-      nativeCode.push(set(circle.y, add(circle.y, multiply(circle.y, -0.01))));
+      nativeCode.push(set(circle.x, add(circle.x, multiply(circle.x, -0.04))));
+      nativeCode.push(set(circle.y, add(circle.y, multiply(circle.y, -0.04))));
     }
 
     for (let i = 0; i < circles.length; i++) {
@@ -86,9 +86,9 @@ const useDraw = (circles) => {
 
         const dx = sub(circleB.x, circleA.x);
         const dy = sub(circleB.y, circleA.y);
-        const distanceBetweenCenters = sqrt(
+        const distanceBetweenCenters = multiply (sqrt(
           add(multiply(dx, dx), multiply(dy, dy))
-        );
+        ), 0.8);
 
         const areOverlapping = lessThan(distanceBetweenCenters, circleDiameter);
 

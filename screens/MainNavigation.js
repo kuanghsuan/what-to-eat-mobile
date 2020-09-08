@@ -5,6 +5,7 @@ import { Animated, Easing } from "react-native";
 import DetailScreen from "../screens/DetailScreen";
 //Screens
 import HomeScreen from "../screens/HomeScreen";
+import SetupScreen from "../screens/Circle";
 import { NavigationContainer } from "@react-navigation/native";
 import React from "react";
 //Package
@@ -31,7 +32,7 @@ const MainNavigator = ({ navigation }) => {
         }}
       >
         <Stack.Screen name="HomeScreen" component={HomeScreen} />
-        {/* <Stack.Screen name="TagScreen" component={SelectScreen} /> */}
+        {/* <Stack.Screen name="TagScreen" component={SetupScreen} /> */}
         <Stack.Screen
           name="DetailScreen"
           component={DetailScreen}

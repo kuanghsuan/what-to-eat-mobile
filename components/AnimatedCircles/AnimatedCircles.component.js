@@ -1,20 +1,7 @@
 import React, { useCallback, useState } from "react";
-import { StyleSheet, View } from "react-native";
-import ActionButton from "react-native-action-button";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { useGravityAnimation } from "./useGravityAnimation.hook";
 import { Circle } from "./Circle.component";
-
-const S = StyleSheet.create({
-  flex: { flex: 1 },
-  wrap: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    overflow: "hidden",
-  },
-});
-
-
 
 export function AnimatedCircles() {
   const [viewDimensions, setViewDimensions] = useState(undefined);
@@ -26,19 +13,21 @@ export function AnimatedCircles() {
   const isCanvasReady = viewDimensions !== undefined;
 
   return (
-    <View style={S.flex} onLayout={handleLayout}>
+    <View style={styles.flex} onLayout={handleLayout}>
       {isCanvasReady && <AnimatedCirclesInner dimensions={viewDimensions} />}
-      
     </View>
   );
 }
 
 export function AnimatedCirclesInner({ dimensions }) {
-    
   const circles = useGravityAnimation(dimensions);
 
   return (
-    <View style={S.wrap}>
+    <View style={styles.wrap}>
+      <View style={styles.title}>
+        <Text style={styles.text}>Choose 3 Interest</Text>
+      </View>
+
       {circles.map((p, index) => {
         return (
           <Circle
@@ -49,7 +38,70 @@ export function AnimatedCirclesInner({ dimensions }) {
           />
         );
       })}
-      <ActionButton buttonColor="rgba(231,76,60,1)" />
+      {/* <View style={styles.container}>
+        <TouchableOpacity style={styles.button}>
+          <Text style={styles.text}>I'm Done</Text>
+        </TouchableOpacity>
+      </View> */}
+      <TouchableOpacity style={styles.buttonContainer}>
+        <Text style={styles.text}>I'm Done</Text>
+      </TouchableOpacity>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  flex: { flex: 1 },
+  wrap: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    overflow: "hidden",
+    backgroundColor: "#F8D37A",
+  },
+
+  title: {
+    position: "absolute",
+    top: 80,
+  },
+
+  text: {
+    fontWeight: "bold",
+    fontSize: 28,
+    color: "black",
+  },
+
+  container: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    bottom: 100,
+  },
+
+  button: {
+    flex: 1,
+    borderRadius: 50,
+    margin: 20,
+    padding: 20,
+    paddingLeft: 80,
+    paddingRight: 80,
+    backgroundColor: "#F29B00",
+    borderRadius: 9,
+  },
+  buttonContainer: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+    position: "absolute",
+    padding: 20,
+    paddingLeft: 80,
+    paddingRight: 80,
+    bottom: 80,
+ 
+    borderRadius: 50,
+    margin: 2,
+    justifyContent: "center",
+    backgroundColor: "#F29B00",
+  },
+});
