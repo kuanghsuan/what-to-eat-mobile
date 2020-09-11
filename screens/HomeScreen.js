@@ -35,8 +35,7 @@ const HomeScreen = (props) => {
   const [modalVisible, setModalVisible] = useState(false);
   const [filterData, setFilterData] = useState({
     [CATEGORY]: [],
-    [PRICE]: [],
-    [MINIMUM_RATING]: [],
+    distance: 2,
   });
   const swiperRef = useRef();
 
@@ -114,6 +113,15 @@ const HomeScreen = (props) => {
         <Filters openModal={() => setModalVisible(true)} />
       </View>
       <View>
+        <FilterModal
+          modalVisible={modalVisible}
+          selectTag={selectTag}
+          deSelectTag={deSelectTag}
+          data={filterData}
+          closeModal={() => {
+            setModalVisible(false);
+          }}
+        />
         <Swiper
           ref={(swiper) => (swiperRef.current = swiper)}
           cardVerticalMargin={hp(0.9)}
@@ -269,15 +277,6 @@ const HomeScreen = (props) => {
           <Foundation name="heart" size={hp(50)} color="#20B2AA" />
         </TouchableScale>
       </View>
-      <FilterModal
-        modalVisible={modalVisible}
-        selectTag={selectTag}
-        deSelectTag={deSelectTag}
-        data={filterData}
-        closeModal={() => {
-          setModalVisible(false);
-        }}
-      />
     </View>
   );
 };

@@ -239,17 +239,27 @@ export default StyleSheet.create({
   },
 
   //Tags
+  frame: {
+    backgroundColor: "white",
+    overflow: "hidden",
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    borderWidth: 4,
+    borderColor: "black",
+  },
   tagContainer: {
     backgroundColor: "#20B2AA",
   },
   tags: {
-    color: "#FFFFFF",
+    color: "black",
     fontSize: 12,
     fontWeight: "bold",
   },
   filterTagContainer: {
     justifyContent: "center",
-    backgroundColor: "#D3D3D3",
+    backgroundColor: "white",
+    borderWidth: 2,
+    borderColor: "black",
     borderRadius: 16,
     paddingLeft: 12,
     paddingRight: 12,
@@ -257,6 +267,21 @@ export default StyleSheet.create({
     margin: 4,
   },
   selectedTag: {
-    backgroundColor: "#20B2AA",
+    backgroundColor: "black",
+  },
+  selectedTagText: {
+    color: "white",
+  },
+  filterModalSectionTitles: {
+    color: "black",
+    fontWeight: "bold",
+    fontStyle: "normal",
+    fontSize: 20,
+    marginVertical: 0,
+  },
+  filteModalTextSmall: {
+    fontWeight: "bold",
+    fontStyle: "normal",
+    fontSize: 13,
   },
 });
