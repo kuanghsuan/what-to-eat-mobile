@@ -12,7 +12,7 @@ import Dishes from '../components/Dishes';
 
 const StoreDetail = (props) => {
     const [activeIndex, setActiveIndex] = useState(0);
-    
+
 
     _renderItem = ({item,index}) => {
         return (
