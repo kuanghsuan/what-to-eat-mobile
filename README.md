@@ -1,3 +1,5 @@
+# Backend Repository: https://github.com/greatday4april/what-to-eat-ml-backend
+
 # what-to-eat-mobile
 
 A ML-based restaurant recommendation app written in React-Native with Expo.
