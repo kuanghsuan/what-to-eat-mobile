@@ -1,3 +1,5 @@
+# Launched in Google Play: https://play.google.com/store/apps/details?id=com.ELEPHANT_BOX.what_to_eat
+
 # Backend Repository: https://github.com/greatday4april/what-to-eat-ml-backend
 
 # what-to-eat-mobile
