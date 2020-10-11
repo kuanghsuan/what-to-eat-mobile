@@ -22,7 +22,6 @@ YellowBox.ignoreWarnings([
 ]);
 
 export default function App() {
-  console.log("entry");
   const [fontLoaded, setFontLoaded] = useState(false);
   if (!fontLoaded) {
     return (

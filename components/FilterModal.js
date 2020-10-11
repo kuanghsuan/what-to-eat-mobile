@@ -77,7 +77,6 @@ const FilterModal = ({
       marginHorizontal={0}
       marginBottom={0}
       isVisible={modalVisible}
-
     >
       <View style={{ flex: 1, marginTop: 40 }}>
         <View
@@ -141,8 +140,10 @@ const FilterModal = ({
               marginRight: 46,
             }}
           >
-            {DISTANCES.map((distance) => (
-              <Text style={styles.filteModalTextSmall}>{distance}</Text>
+            {DISTANCES.map((distance, index) => (
+              <Text key={index} style={styles.filteModalTextSmall}>
+                {distance}
+              </Text>
             ))}
           </View>
         </View>
